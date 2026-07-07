@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
-    "seed": "tsx prisma/seed.ts"
+    "start": "node dist/server.js",    
+    "migrate": "prisma migrate deploy",
+    "seed": "tsx prisma/seed.ts",
+    "start:prod": "npm run migrate && npm run start"
   },
   "keywords": [],
   "author": "",
