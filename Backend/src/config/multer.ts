@@ -3,26 +3,36 @@ import path from "path";
 import fs from "fs";
 import crypto from "crypto";
 
-const uploadPath = path.resolve("uploads/properties");
+const uploadPath = process.env.UPLOAD_PATH ??
+    path.resolve("uploads");
 
-if (!fs.existsSync(uploadPath)) {
-    fs.mkdirSync(uploadPath, {
+const propertyPath =
+    path.join(uploadPath, "properties");
+
+if (!fs.existsSync(propertyPath)) {
+    fs.mkdirSync(propertyPath, {
         recursive: true
     });
 }
 
 const storage = multer.diskStorage({
+
     destination(req, file, cb) {
-        cb(null, uploadPath);
+        cb(null, propertyPath);
     },
 
     filename(req, file, cb) {
-        const extension = path.extname(file.originalname);
-        const fileName =
-            crypto.randomUUID() + extension;
 
-        cb(null, fileName);
+        const extension =
+            path.extname(file.originalname);
+
+        cb(
+            null,
+            crypto.randomUUID() + extension
+        );
+
     }
+
 });
 
 export default multer({
@@ -32,16 +42,15 @@ export default multer({
     },
 
     fileFilter(req, file, cb) {
+
         if (
             file.mimetype === "image/jpeg" ||
             file.mimetype === "image/png" ||
             file.mimetype === "image/webp"
         ) {
-            cb(null, true);
-            return;
+            return cb(null, true);
         }
 
         cb(new Error("Formato de imagen inválido."));
     }
-
 });
