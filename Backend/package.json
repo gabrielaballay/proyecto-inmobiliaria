@@ -11,7 +11,7 @@
     "seed": "tsx prisma/seed.ts",
     "start:prod": "npm run migrate && npm run start",
     "postinstall": "prisma generate"
-  }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
