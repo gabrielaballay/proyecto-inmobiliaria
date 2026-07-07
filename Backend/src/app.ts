@@ -15,13 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 
-app.use(errorHandler);
-
 app.use(
     "/uploads",
-    express.static(
-        path.resolve("uploads")
-    )
+    express.static(path.resolve("uploads"))
 );
+
+app.use(errorHandler);
 
 export default app;
