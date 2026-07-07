@@ -3,8 +3,9 @@ import path from "path";
 import fs from "fs";
 import crypto from "crypto";
 
-const uploadPath = process.env.UPLOAD_PATH ??
-    path.resolve("uploads");
+const uploadPath = path.resolve(
+    process.env.UPLOAD_PATH ?? "uploads/properties"
+);
 
 const propertyPath =
     path.join(uploadPath, "properties");
