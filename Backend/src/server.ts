@@ -1,9 +1,21 @@
 import dotenv from "dotenv";
-import app from "./app.js";
-
 dotenv.config();
 
+import express from "express";
+import path from "path";
+
+import app from "./app.js";
+
 const PORT = Number(process.env.PORT) || 3000;
+
+const uploadPath =
+    process.env.UPLOAD_PATH ??
+    path.resolve("uploads");
+
+app.use(
+    "/uploads",
+    express.static(uploadPath)
+);
 
 app.listen(PORT, () => {
     console.log("====================================");
