@@ -4,7 +4,7 @@ export function toImageResponse(image: PropertyImage) {
 
     return {
         id: image.id,
-        url: `/uploads/properties/${image.fileName}`,
+        url: `/uploads/${image.fileName}`,
         isPrimary: image.isPrimary,
         displayOrder: image.displayOrder
     };
