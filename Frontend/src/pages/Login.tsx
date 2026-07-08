@@ -5,7 +5,6 @@ import { useAuth } from "../hooks/useAuth";
 
 const Login: React.FC = () => {
     const navigate = useNavigate();
-
     const { login } = useAuth();
 
     const [formData, setFormData] = useState({
@@ -14,7 +13,6 @@ const Login: React.FC = () => {
     });
 
     const [loading, setLoading] = useState(false);
-
     const [error, setError] = useState("");
 
     const handleLogin = async (e: React.FormEvent) => {
@@ -29,7 +27,6 @@ const Login: React.FC = () => {
             navigate("/profile", {
                 replace: true
             });
-
         } catch {
             setError("Correo electrónico o contraseña incorrectos.");
         } finally {
@@ -45,117 +42,103 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-white dark:bg-background-dark">
-
+        <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
+            
             <TopAppBar
-                title="Iniciar Sesión"
+                title="INICIAR SESIÓN"
                 showBack
             />
 
-            <div className="p-8 flex flex-col items-center justify-center flex-1 max-w-md mx-auto w-full animate-fade-in">
-
-                <div className="size-20 bg-primary/10 rounded-[2rem] flex items-center justify-center text-primary mb-6 shadow-inner">
-                    <span className="material-symbols-outlined text-5xl">
-                        login
-                    </span>
-                </div>
-
-                <h2 className="text-3xl font-black text-navy dark:text-white mb-2 text-center tracking-tight">
-                    Bienvenido
-                </h2>
-
-                <p className="text-gray-400 font-bold text-center mb-8 text-[10px] uppercase tracking-widest">
-                    Ingresa a Oriente Propiedades
-                </p>
-
-                <form
-                    className="w-full space-y-5"
-                    onSubmit={handleLogin}
-                >
-
-                    <div className="space-y-1.5">
-
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">
-                            Correo Electrónico
-                        </label>
-
-                        <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                                <span className="material-symbols-outlined text-lg">
-                                    mail
-                                </span>
-                            </span>
-
-                            <input
-                                name="email"
-                                type="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                placeholder="correo@oriente.com"
-                                className="w-full h-14 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl pl-12 pr-5 text-sm font-bold dark:text-white focus:ring-2 focus:ring-primary/20 transition-all"
-                            />
-
+            <div className="px-6 flex flex-col items-center justify-center flex-1 max-w-md mx-auto w-full animate-fade-in pb-24">
+                
+                {}
+                <div className="w-full bg-white border border-neutral-200/80 p-8 sm:p-10 rounded-xl shadow-xs">
+                    
+                    {}
+                    <div className="text-center mb-8">
+                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-950 text-white mb-4 shadow-sm">
+                            <span className="material-symbols-outlined text-xl font-light">lock_open</span>
                         </div>
-
+                        <h2 className="text-xl font-bold tracking-tight text-neutral-900 mb-1">
+                            Ingreso al Sistema
+                        </h2>
+                        <p className="text-neutral-400 text-xs font-medium tracking-wide">
+                            Gestioná tus propiedades en Oriente
+                        </p>
                     </div>
 
-                    <div className="space-y-1.5">
-
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">
-                            Contraseña
-                        </label>
-
-                        <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                                <span className="material-symbols-outlined text-lg">
-                                    lock
+                    <form className="w-full space-y-5" onSubmit={handleLogin}>
+                        
+                        {}
+                        <div className="space-y-2">
+                            <label className="text-xs font-semibold text-neutral-700 tracking-wide block ml-0.5">
+                                Correo Electrónico
+                            </label>
+                            <div className="relative">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400 flex items-center pointer-events-none">
+                                    <span className="material-symbols-outlined text-lg font-light">mail</span>
                                 </span>
-                            </span>
-
-                            <input
-                                name="password"
-                                type="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                required
-                                placeholder="••••••••"
-                                className="w-full h-14 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl pl-12 pr-5 text-sm font-bold dark:text-white focus:ring-2 focus:ring-primary/20 transition-all"
-                            />
-
-                        </div>
-
-                    </div>
-
-                    {
-
-                        error && (
-                            <div className="bg-red-50 border border-red-200 rounded-2xl p-3">
-                                <p className="text-red-600 text-xs font-bold text-center">
-                                    {error}
-                                </p>
+                                <input
+                                    name="email"
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="correo@oriente.com"
+                                    className="w-full h-12 bg-[#fafafa] border border-neutral-200 rounded-xl pl-12 pr-4 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 transition-all duration-200"
+                                />
                             </div>
-                        )
+                        </div>
 
-                    }
+                        {}
+                        <div className="space-y-2">
+                            <label className="text-xs font-semibold text-neutral-700 tracking-wide block ml-0.5">
+                                Contraseña
+                            </label>
+                            <div className="relative">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400 flex items-center pointer-events-none">
+                                    <span className="material-symbols-outlined text-lg font-light">lock</span>
+                                </span>
+                                <input
+                                    name="password"
+                                    type="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="••••••••"
+                                    className="w-full h-12 bg-[#fafafa] border border-neutral-200 rounded-xl pl-12 pr-4 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 transition-all duration-200"
+                                />
+                            </div>
+                        </div>
 
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full bg-primary text-white font-black py-5 rounded-2xl shadow-xl shadow-primary/20 hover:bg-red-700 active:scale-95 transition-all text-xs uppercase tracking-[0.2em] mt-4 flex items-center justify-center"
-                    >
+                        {}
+                        {error && (
+                            <div className="p-3 bg-neutral-50 border border-neutral-200 text-neutral-600 text-xs text-center rounded-xl font-medium">
+                                {error}
+                            </div>
+                        )}
 
-                        {
-                            loading
-                                ? <div className="size-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                                : "Entrar"
-                        }
-                    </button>
-                </form>
+                        {}
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full h-12 bg-neutral-950 text-white text-[10px] font-medium uppercase tracking-[0.2em] rounded-xl shadow-sm hover:bg-neutral-800 transition-all duration-200 active:scale-[0.98] flex items-center justify-center pt-[2px]"
+                        >
+                            {loading ? (
+                                <div className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                            ) : (
+                                "ENTRAR AL SISTEMA"
+                            )}
+                        </button>
+                    </form>
 
-                <p className="mt-12 text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">
-                    Acceso exclusivo para usuarios autorizados.
-                </p>
+                    {/* Footer sutil */}
+                    <div className="mt-6 pt-6 border-t border-neutral-100 text-center">
+                        <p className="text-[10px] text-neutral-400 tracking-widest uppercase font-medium">
+                            
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );
