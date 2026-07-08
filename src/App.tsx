@@ -17,11 +17,11 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminUsers from './pages/AdminUsers';
 import PropertyForm from './pages/PropertyForm';
 import ProtectedRoute from './components/ProtectedRoute';
-import { Toaster } from 'react-hot-toast'; // Importación de la librería de avisos
+import { Toaster } from 'react-hot-toast'; //comentario para ver si funciona el git
 
 
 const GaleriaPropiedades: React.FC = () => {
-  // Generamos la lista de nombres que me pasaste
+  
   const fotos = Array.from({ length: 49 }, (_, i) => `image (${i + 1}).jpeg`);
   fotos.unshift("image.jpeg"); 
 

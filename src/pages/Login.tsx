@@ -51,10 +51,10 @@ const Login: React.FC = () => {
 
             <div className="px-6 flex flex-col items-center justify-center flex-1 max-w-md mx-auto w-full animate-fade-in pb-24">
                 
-                {/* Tarjeta Contenedora: Estructura Moderna + Paleta Home */}
+                {}
                 <div className="w-full bg-white border border-neutral-200/80 p-8 sm:p-10 rounded-xl shadow-xs">
                     
-                    {/* Encabezado Moderno y Limpio */}
+                    {}
                     <div className="text-center mb-8">
                         <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-950 text-white mb-4 shadow-sm">
                             <span className="material-symbols-outlined text-xl font-light">lock_open</span>
@@ -69,7 +69,7 @@ const Login: React.FC = () => {
 
                     <form className="w-full space-y-5" onSubmit={handleLogin}>
                         
-                        {/* Campo Correo */}
+                        {}
                         <div className="space-y-2">
                             <label className="text-xs font-semibold text-neutral-700 tracking-wide block ml-0.5">
                                 Correo Electrónico
@@ -90,7 +90,7 @@ const Login: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Campo Contraseña */}
+                        {}
                         <div className="space-y-2">
                             <label className="text-xs font-semibold text-neutral-700 tracking-wide block ml-0.5">
                                 Contraseña
@@ -111,14 +111,14 @@ const Login: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Banner de Error Integrado */}
+                        {}
                         {error && (
                             <div className="p-3 bg-neutral-50 border border-neutral-200 text-neutral-600 text-xs text-center rounded-xl font-medium">
                                 {error}
                             </div>
                         )}
 
-                        {/* Botón Premium del Home (Negro pleno, tipografía tracking ancho) */}
+                        {}
                         <button
                             type="submit"
                             disabled={loading}
