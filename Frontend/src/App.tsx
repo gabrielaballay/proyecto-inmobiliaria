@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+iimport React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import PropertyList from './pages/PropertyList';
@@ -17,12 +17,13 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminUsers from './pages/AdminUsers';
 import PropertyForm from './pages/PropertyForm';
 import ProtectedRoute from './components/ProtectedRoute';
+import { Toaster } from 'react-hot-toast'; //comentario para ver si funciona el git
 
-// --- NUEVA GALERÍA DE PROPIEDADES ---
+
 const GaleriaPropiedades: React.FC = () => {
-  // Generamos la lista de nombres que me pasaste
+  
   const fotos = Array.from({ length: 49 }, (_, i) => `image (${i + 1}).jpeg`);
-  fotos.unshift("image.jpeg"); // Agregamos la primera que no tiene número
+  fotos.unshift("image.jpeg"); 
 
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark p-6">
@@ -77,6 +78,22 @@ const App: React.FC = () => {
 
   return (
     <Router>
+      {}
+      <Toaster 
+        position="top-right" 
+        reverseOrder={false} 
+        toastOptions={{
+          style: {
+            background: '#ffffff',
+            color: '#171717',
+            fontSize: '14px',
+            borderRadius: '4px',
+            border: '1px solid #e5e5e5',
+            letterSpacing: '0.05em'
+          }
+        }} 
+      />
+
       <div className="min-h-screen bg-background-light dark:bg-background-dark selection:bg-primary selection:text-white transition-colors duration-300">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -153,7 +170,7 @@ const App: React.FC = () => {
           />
           <Route path="/admin"
               element={
-                  <ProtectedRoute roles={["ADMIN"]}>
+                  <ProtectedRoute>
                       <AdminDashboard />
                   </ProtectedRoute>
               }
