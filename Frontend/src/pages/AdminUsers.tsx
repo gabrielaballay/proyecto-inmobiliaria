@@ -5,7 +5,8 @@ import { useAuth } from "../hooks/useAuth";
 import {
     getUsers,
     createUser,
-    changeUserStatus
+    changeUserStatus,
+    deleteUser
 } from "../services/user.service";
 import { User } from "../types/user";
 
@@ -17,6 +18,7 @@ const roleLabels: Record<string, string> = {
 const emptyForm = {
     firstName: "",
     lastName: "",
+    role: "SELLER",
     email: "",
     password: ""
 };
@@ -68,10 +70,8 @@ const AdminUsers: React.FC = () => {
         setSaving(true);
 
         try {
-            const newUser = await createUser({
-                ...formData,
-                role: "SELLER"
-            });
+            console.log(formData);
+            const newUser = await createUser(formData);
 
             setUsers(current => [...current, newUser].sort(
                 (a, b) => a.firstName.localeCompare(b.firstName)
@@ -106,6 +106,23 @@ const AdminUsers: React.FC = () => {
         }
     }
 
+    async function handleDelete(id: string) {
+        const confirmed = window.confirm(
+            "¿Está seguro que desea eliminar este usuario?"
+        );
+
+        if (!confirmed) return;
+
+        try {
+            console.log(id)
+            await deleteUser(id);
+            setUsers(current => current.filter(p => p.id !== id));
+        } catch (error) {
+            console.error(error);
+            alert("No fue posible eliminar la propiedad.");
+        }
+    }
+
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center h-screen bg-[#fafafa] text-neutral-900 tracking-[0.3em] font-sans antialiased uppercase text-xs">
@@ -119,7 +136,7 @@ const AdminUsers: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
-            <TopAppBar  showBack />
+            <TopAppBar showBack />
 
             <div className="px-6 md:px-12 py-8 max-w-5xl mx-auto w-full flex-1">
                 <div className="mb-10">
@@ -137,8 +154,8 @@ const AdminUsers: React.FC = () => {
                     <button
                         onClick={() => setShowForm(current => !current)}
                         className={`h-11 px-5 rounded-sm text-[10px] font-semibold uppercase tracking-[0.3em] transition-all flex items-center gap-2 shadow-sm border ${showForm
-                                ? 'bg-white text-neutral-500 border-neutral-200/60 hover:border-neutral-900 hover:text-neutral-900'
-                                : 'bg-neutral-950 text-white border-neutral-950 hover:bg-neutral-700'
+                            ? 'bg-white text-neutral-500 border-neutral-200/60 hover:border-neutral-900 hover:text-neutral-900'
+                            : 'bg-neutral-950 text-white border-neutral-950 hover:bg-neutral-700'
                             }`}
                     >
                         <span className="material-symbols-outlined text-base">
@@ -180,6 +197,20 @@ const AdminUsers: React.FC = () => {
                                 />
                             </div>
                         </div>
+                        {user?.role == "ADMIN" &&
+                            (
+                                <div className="space-y-1.5">
+                                    <label className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em]">Rol</label>
+                                    <select
+                                        value={formData.role}
+                                        onChange={e => setFormData({ ...formData, role: e.target.value })}
+                                        className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    >
+                                        <option value="SELLER">Vendedor</option>
+                                        <option value="ADMIN">Administrador</option>
+                                    </select>
+                                </div>
+                            )}
                         <div className="space-y-1.5">
                             <label className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em]">Email</label>
                             <input
@@ -259,23 +290,33 @@ const AdminUsers: React.FC = () => {
                                             {roleLabels[u.role] ?? u.role}
                                         </span>
                                         <span className={`text-[9px] font-semibold uppercase tracking-[0.2em] px-2 py-0.5 rounded-sm border ${u.active
-                                                ? "text-emerald-600 bg-emerald-50/50 border-emerald-200/40"
-                                                : "text-neutral-400 bg-neutral-50 border-neutral-200/60"
+                                            ? "text-emerald-600 bg-emerald-50/50 border-emerald-200/40"
+                                            : "text-neutral-400 bg-neutral-50 border-neutral-200/60"
                                             }`}>
                                             {u.active ? "Activo" : "Inactivo"}
                                         </span>
                                     </div>
                                 </div>
 
-                                {/* Acción de Estado */}
+                                {/* Acción de Estado */}                                
                                 {u.id !== user?.id && (
-                                    <div className="border-l border-neutral-100 pl-4 h-12 flex items-center">
+                                    <div className="border-l gap-2 border-neutral-100 pl-4 h-12 flex items-center">
+                                        <button
+                                            onClick={() => handleDelete(u.id)}
+                                            className="size-9 rounded-sm border border-neutral-200/60 text-neutral-400 flex items-center justify-center hover:border-red-500 hover:text-red-500 transition-colors"
+                                            title="Eliminar"
+                                        >
+                                            <span className="material-symbols-outlined text-lg">
+                                                delete
+                                            </span>
+                                        </button>
+
                                         <button
                                             onClick={() => handleToggleStatus(u.id)}
                                             disabled={togglingId === u.id}
                                             className={`h-9 px-4 rounded-sm text-[9px] font-semibold uppercase tracking-[0.2em] border transition-colors disabled:opacity-50 ${u.active
-                                                    ? "bg-white text-neutral-400 border-neutral-200/60 hover:text-red-500 hover:border-red-500"
-                                                    : "bg-neutral-950 text-white border-neutral-950 hover:bg-neutral-700"
+                                                ? "bg-white text-neutral-400 border-neutral-200/60 hover:text-red-500 hover:border-red-500"
+                                                : "bg-neutral-950 text-white border-neutral-950 hover:bg-neutral-700"
                                                 }`}
                                         >
                                             {togglingId === u.id

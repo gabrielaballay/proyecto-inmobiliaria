@@ -156,7 +156,7 @@ const PropertyForm: React.FC = () => {
                 await uploadImages(property.id, newImages.map(n => n.file));
             }
 
-            navigate("/admin");
+            navigate("/dashboard");
         }
         catch (error) {
             console.error(error);
@@ -520,7 +520,7 @@ const PropertyForm: React.FC = () => {
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                     <button
                         type="button"
-                        onClick={() => navigate('/admin')}
+                        onClick={() => navigate('/dashboard')}
                         className="h-12 border border-neutral-200 text-neutral-500 text-[10px] font-medium uppercase tracking-widest hover:bg-neutral-100 transition-colors w-full sm:flex-1 rounded-sm"
                     >
                         Cancelar

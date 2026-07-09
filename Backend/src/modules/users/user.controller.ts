@@ -45,7 +45,7 @@ class UserController {
     ) {
         try {
             const user =
-                await userService.changeStatus(req.body);
+                await userService.changeStatus(req.params.id);
 
             return res.json(user);
         }
@@ -66,6 +66,16 @@ class UserController {
                 );
 
             return res.json(user);
+        }
+        catch (error) {
+            next(error);
+        }
+    }
+
+    async delete(req: IdRequest, res: Response, next: NextFunction) {
+        try {
+            await userService.delete(req.params.id);
+            return res.status(204).send();
         }
         catch (error) {
             next(error);

@@ -15,7 +15,8 @@ const EditProfile: React.FC = () => {
   const [formData, setFormData] = useState({
     firstName: user?.firstName ?? '',
     lastName: user?.lastName ?? '',
-    email: user?.email ?? ''
+    email: user?.email ?? '',
+    role: user?.role
   });
 
   const [passwordData, setPasswordData] = useState({
@@ -159,7 +160,6 @@ const EditProfile: React.FC = () => {
                     className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
                   />
                 </div>
-
                 <div className="flex flex-col gap-2 md:col-span-2">
                   <label className="text-[10px] font-medium tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-500">
                     Email Corporativo

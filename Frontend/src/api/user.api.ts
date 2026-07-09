@@ -6,7 +6,7 @@ export interface CreateUserRequest {
     lastName: string;
     email: string;
     password: string;
-    role: "SELLER";
+    role: string;
 }
 
 export interface UpdateUserRequest {
@@ -49,6 +49,16 @@ export async function changeUserStatus(
 ): Promise<User> {
 
     const response = await api.patch<User>(`/users/${id}/status`);
+
+    return response.data;
+
+}
+
+export async function deleteUser(
+    id: string
+): Promise<User> {
+
+    const response = await api.delete<User>(`/users/${id}`);
 
     return response.data;
 

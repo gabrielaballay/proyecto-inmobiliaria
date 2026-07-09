@@ -38,7 +38,7 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ darkMode, onToggleDar
             icon: "dashboard",
             label: "Gestionar Propiedades",
             description: "Añadir o editar publicaciones",
-            path: "/admin",
+            path: "/dashboard",
             isToggle: false
           },
           {

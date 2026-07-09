@@ -4,6 +4,7 @@ import {
     getUsers as getUsersApi,
     createUser as createUserApi,
     updateUser as updateUserApi,
+    deleteUser as deleteUserApi,
     changeUserStatus as changeUserStatusApi,
     CreateUserRequest,
     UpdateUserRequest
@@ -28,4 +29,8 @@ export async function updateUser(
 
 export async function changeUserStatus(id: string): Promise<User> {
     return await changeUserStatusApi(id);
+}
+
+export async function deleteUser(id: string): Promise<User> {
+    return await deleteUserApi(id);
 }

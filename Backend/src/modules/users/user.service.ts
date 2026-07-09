@@ -100,6 +100,28 @@ class UserService {
         return toUserResponse(updatedUser);
     }
 
+    async delete(id: string) {
+
+        const exists = await prisma.user.findUnique({
+            where: {
+                id
+            }
+        });
+
+        if (!exists) {
+            throw new AppError(
+                "Usuario no encontrado.",
+                404
+            );
+        }
+
+        await prisma.user.delete({
+            where: {
+                id
+            }
+        });
+    }
+
 }
 
 export default new UserService();
