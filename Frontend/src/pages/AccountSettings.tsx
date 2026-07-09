@@ -107,21 +107,15 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ darkMode, onToggleDar
             <p className="text-neutral-400 dark:text-neutral-500 text-[10px] font-light tracking-wide truncate mt-1.5 uppercase">{userEmail}</p>
           </div>
 
-          {!isAuthenticated ? (
+          {!isAuthenticated && (
             <button 
               onClick={() => navigate('/login')}
               className="bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 text-[9px] font-medium py-3 px-6 tracking-[0.2em] uppercase hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all duration-300 rounded-none border border-transparent"
             >
               Entrar
             </button>
-          ) : (
-            <button 
-              onClick={() => navigate('/profile')}
-              className="border border-neutral-200 dark:border-neutral-800 text-neutral-400 hover:text-neutral-900 dark:hover:text-white size-10 flex items-center justify-center rounded-none transition-colors duration-300"
-            >
-              <span className="material-symbols-outlined font-light text-lg">chevron_right</span>
-            </button>
-          )}
+          ) }
+          
         </div>
 
         {}

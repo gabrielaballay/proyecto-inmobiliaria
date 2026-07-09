@@ -108,40 +108,55 @@ const AdminUsers: React.FC = () => {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center h-screen dark:text-white">
+            <div className="flex flex-col items-center justify-center h-screen bg-[#fafafa] text-neutral-900 tracking-[0.3em] font-sans antialiased uppercase text-xs">
+                <span className="material-symbols-outlined text-3xl text-neutral-400 animate-spin mb-2">
+                    autorenew
+                </span>
                 Cargando...
             </div>
         );
     }
 
     return (
-        <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark">
-            <TopAppBar title="Gestión de Vendedores" showBack />
+        <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
+            <TopAppBar  showBack />
 
-            <div className="p-4 flex flex-col gap-6 max-w-4xl mx-auto w-full">
-                <div className="flex justify-between items-center">
-                    <h2 className="text-xl font-black dark:text-white uppercase tracking-tighter">
+            <div className="px-6 md:px-12 py-8 max-w-5xl mx-auto w-full flex-1">
+                <div className="mb-10">
+                    <h1 className="text-neutral-900 dark:text-white text-xl font-light tracking-widest uppercase">
+                        GESTION <span className="font-semibold">/ VENDEDORES</span>
+                    </h1>
+                    <div className="w-12 h-[1px] bg-neutral-950 dark:bg-white mt-4" />
+                </div>
+                {/* Cabecera de la Sección */}
+                <div className="flex justify-between items-center border-b border-neutral-200/50 pb-6 mb-6">
+                    <h2 className="text-neutral-900 font-medium text-xs uppercase tracking-[0.3em]">
                         Usuarios
+                        <span className="text-neutral-400 font-light ml-1">({users.length})</span>
                     </h2>
                     <button
                         onClick={() => setShowForm(current => !current)}
-                        className="bg-primary text-white px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-primary/20 active:scale-95 transition-all flex items-center gap-2"
+                        className={`h-11 px-5 rounded-sm text-[10px] font-semibold uppercase tracking-[0.3em] transition-all flex items-center gap-2 shadow-sm border ${showForm
+                                ? 'bg-white text-neutral-500 border-neutral-200/60 hover:border-neutral-900 hover:text-neutral-900'
+                                : 'bg-neutral-950 text-white border-neutral-950 hover:bg-neutral-700'
+                            }`}
                     >
-                        <span className="material-symbols-outlined text-sm">
+                        <span className="material-symbols-outlined text-base">
                             {showForm ? "close" : "add"}
                         </span>
                         {showForm ? "Cancelar" : "Nuevo Vendedor"}
                     </button>
                 </div>
 
+                {/* Formulario Expandible (Estilo Panel de Filtros) */}
                 {showForm && (
                     <form
                         onSubmit={handleCreate}
-                        className="bg-white dark:bg-navy rounded-[2rem] p-6 border border-gray-100 dark:border-gray-800 space-y-4 shadow-sm"
+                        className="bg-white border border-neutral-200/60 rounded-sm p-6 space-y-5 animate-fade-in mb-6"
                     >
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div className="space-y-1.5">
-                                <label className="text-[10px] font-black uppercase text-gray-400 ml-1 tracking-widest">Nombre</label>
+                                <label className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em]">Nombre</label>
                                 <input
                                     name="firstName"
                                     type="text"
@@ -149,11 +164,11 @@ const AdminUsers: React.FC = () => {
                                     onChange={handleChange}
                                     required
                                     minLength={2}
-                                    className="w-full h-12 bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 text-sm font-bold dark:text-white"
+                                    className="w-full h-12 bg-white border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide focus:outline-none focus:border-neutral-900 transition-all"
                                 />
                             </div>
                             <div className="space-y-1.5">
-                                <label className="text-[10px] font-black uppercase text-gray-400 ml-1 tracking-widest">Apellido</label>
+                                <label className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em]">Apellido</label>
                                 <input
                                     name="lastName"
                                     type="text"
@@ -161,23 +176,23 @@ const AdminUsers: React.FC = () => {
                                     onChange={handleChange}
                                     required
                                     minLength={2}
-                                    className="w-full h-12 bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 text-sm font-bold dark:text-white"
+                                    className="w-full h-12 bg-white border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide focus:outline-none focus:border-neutral-900 transition-all"
                                 />
                             </div>
                         </div>
                         <div className="space-y-1.5">
-                            <label className="text-[10px] font-black uppercase text-gray-400 ml-1 tracking-widest">Email</label>
+                            <label className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em]">Email</label>
                             <input
                                 name="email"
                                 type="email"
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full h-12 bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 text-sm font-bold dark:text-white"
+                                className="w-full h-12 bg-white border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide focus:outline-none focus:border-neutral-900 transition-all"
                             />
                         </div>
                         <div className="space-y-1.5">
-                            <label className="text-[10px] font-black uppercase text-gray-400 ml-1 tracking-widest">Contraseña</label>
+                            <label className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em]">Contraseña</label>
                             <input
                                 name="password"
                                 type="password"
@@ -186,77 +201,88 @@ const AdminUsers: React.FC = () => {
                                 required
                                 minLength={8}
                                 placeholder="Mínimo 8 caracteres"
-                                className="w-full h-12 bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 text-sm font-bold dark:text-white"
+                                className="w-full h-12 bg-white border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide placeholder-neutral-300 focus:outline-none focus:border-neutral-900 transition-all"
                             />
                         </div>
 
                         {formError && (
-                            <p className="text-red-500 text-xs font-bold">{formError}</p>
+                            <p className="text-red-500 text-[11px] font-medium tracking-wide uppercase">{formError}</p>
                         )}
 
                         <button
                             type="submit"
                             disabled={saving}
-                            className="w-full h-12 rounded-xl bg-primary text-white font-black text-xs uppercase tracking-widest shadow-lg shadow-primary/20 active:scale-95 transition-all flex items-center justify-center disabled:opacity-50"
+                            className="w-full h-12 rounded-sm bg-neutral-950 text-white text-[10px] font-semibold uppercase tracking-[0.3em] hover:bg-neutral-700 transition-all flex items-center justify-center disabled:opacity-50"
                         >
                             {saving ? (
-                                <div className="size-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                <span className="material-symbols-outlined text-xl animate-spin">
+                                    autorenew
+                                </span>
                             ) : "Crear Vendedor"}
                         </button>
                     </form>
                 )}
 
+                {/* Listado de Usuarios */}
                 <div className="grid gap-4">
                     {users.length === 0 ? (
-                        <div className="text-center py-20 opacity-30">
-                            <span className="material-symbols-outlined text-6xl mb-4">
+                        <div className="py-24 text-center border border-dashed border-neutral-200 rounded-sm">
+                            <span className="material-symbols-outlined text-5xl text-neutral-200 mb-4">
                                 group
                             </span>
-                            <p className="font-bold">No hay usuarios cargados</p>
+                            <p className="text-neutral-400 text-xs uppercase tracking-widest font-light">
+                                No hay usuarios cargados.
+                            </p>
                         </div>
                     ) : (
                         users.map(u => (
                             <div
                                 key={u.id}
-                                className="bg-white dark:bg-navy p-4 rounded-[2rem] border border-gray-100 dark:border-gray-800 flex items-center gap-4 shadow-sm"
+                                className="bg-white border border-neutral-200/60 rounded-sm flex items-center gap-5 p-4 hover:border-neutral-900 transition-all duration-300"
                             >
-                                <div className="size-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                                    <span className="material-symbols-outlined">person</span>
+                                {/* Avatar sutil plano */}
+                                <div className="size-12 rounded-sm bg-neutral-50 border border-neutral-200/40 flex items-center justify-center text-neutral-400 shrink-0">
+                                    <span className="material-symbols-outlined text-xl">person</span>
                                 </div>
 
+                                {/* Información del Usuario */}
                                 <div className="flex-1 min-w-0">
-                                    <h4 className="font-black text-sm dark:text-white truncate">
+                                    <h4 className="text-neutral-900 font-medium text-sm uppercase tracking-wide truncate">
                                         {u.firstName} {u.lastName}
                                     </h4>
-                                    <p className="text-[11px] text-gray-400 truncate">{u.email}</p>
-                                    <div className="flex gap-2 mt-1">
-                                        <span className="text-[9px] font-black uppercase tracking-widest text-gray-400 bg-gray-50 dark:bg-gray-800 px-2 py-0.5 rounded">
+                                    <p className="text-neutral-400 text-xs font-light lowercase tracking-normal mt-0.5 truncate">
+                                        {u.email}
+                                    </p>
+
+                                    <div className="flex gap-2 mt-2.5">
+                                        <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-neutral-500 bg-neutral-50 border border-neutral-200/40 px-2 py-0.5 rounded-sm">
                                             {roleLabels[u.role] ?? u.role}
                                         </span>
-                                        <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${
-                                            u.active
-                                                ? "text-green-600 bg-green-50 dark:bg-green-900/30"
-                                                : "text-red-500 bg-red-50 dark:bg-red-900/30"
-                                        }`}>
+                                        <span className={`text-[9px] font-semibold uppercase tracking-[0.2em] px-2 py-0.5 rounded-sm border ${u.active
+                                                ? "text-emerald-600 bg-emerald-50/50 border-emerald-200/40"
+                                                : "text-neutral-400 bg-neutral-50 border-neutral-200/60"
+                                            }`}>
                                             {u.active ? "Activo" : "Inactivo"}
                                         </span>
                                     </div>
                                 </div>
 
+                                {/* Acción de Estado */}
                                 {u.id !== user?.id && (
-                                    <button
-                                        onClick={() => handleToggleStatus(u.id)}
-                                        disabled={togglingId === u.id}
-                                        className={`px-4 h-10 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 disabled:opacity-50 ${
-                                            u.active
-                                                ? "bg-red-50 dark:bg-red-900/30 text-red-500"
-                                                : "bg-green-50 dark:bg-green-900/30 text-green-600"
-                                        }`}
-                                    >
-                                        {togglingId === u.id
-                                            ? "..."
-                                            : u.active ? "Desactivar" : "Activar"}
-                                    </button>
+                                    <div className="border-l border-neutral-100 pl-4 h-12 flex items-center">
+                                        <button
+                                            onClick={() => handleToggleStatus(u.id)}
+                                            disabled={togglingId === u.id}
+                                            className={`h-9 px-4 rounded-sm text-[9px] font-semibold uppercase tracking-[0.2em] border transition-colors disabled:opacity-50 ${u.active
+                                                    ? "bg-white text-neutral-400 border-neutral-200/60 hover:text-red-500 hover:border-red-500"
+                                                    : "bg-neutral-950 text-white border-neutral-950 hover:bg-neutral-700"
+                                                }`}
+                                        >
+                                            {togglingId === u.id
+                                                ? "..."
+                                                : u.active ? "Desactivar" : "Activar"}
+                                        </button>
+                                    </div>
                                 )}
                             </div>
                         ))

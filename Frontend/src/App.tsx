@@ -7,9 +7,7 @@ import AccountSettings from './pages/AccountSettings';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
-import Notifications from './pages/Notifications';
 import SecuritySettings from './pages/SecuritySettings';
-import NotificationSettings from './pages/NotificationSettings';
 import LanguageSettings from './pages/LanguageSettings';
 import HelpFAQ from './pages/HelpFAQ';
 import TermsPrivacy from './pages/TermsPrivacy';
@@ -116,13 +114,6 @@ const App: React.FC = () => {
                   </ProtectedRoute>
               }
           />
-          <Route path="/notifications"
-              element={
-                  <ProtectedRoute>
-                      <Notifications />
-                  </ProtectedRoute>
-              }
-          />
           <Route path="/settings"
               element={
                   <ProtectedRoute>
@@ -137,13 +128,6 @@ const App: React.FC = () => {
               element={
                   <ProtectedRoute>
                       <SecuritySettings />
-                  </ProtectedRoute>
-              }
-          />
-          <Route path="/settings/notifications"
-              element={
-                  <ProtectedRoute>
-                      <NotificationSettings />
                   </ProtectedRoute>
               }
           />

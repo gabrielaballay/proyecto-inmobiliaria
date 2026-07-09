@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import TopAppBar from '../components/TopAppBar';
 
@@ -17,80 +16,126 @@ const SecuritySettings: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark">
-      <TopAppBar title="Seguridad" showBack />
+    <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
+      <TopAppBar showBack />
       
-      <div className="p-4 space-y-6">
-        <div className="bg-white dark:bg-navy rounded-2xl p-6 border border-gray-100 dark:border-gray-800 flex items-center gap-4">
-          <div className="size-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-            <span className="material-symbols-outlined">check_circle</span>
+      <div className="px-6 md:px-12 py-8 max-w-2xl mx-auto w-full space-y-8 flex-1">
+        
+        {/* Banner de Estado de Cuenta */}
+        <div className="bg-white border border-neutral-200/60 rounded-sm p-5 flex items-center gap-4">
+          <div className="size-10 rounded-sm bg-neutral-50 border border-neutral-200/40 flex items-center justify-center text-emerald-600">
+            <span className="material-symbols-outlined text-xl">check_circle</span>
           </div>
           <div>
-            <h3 className="font-bold dark:text-white">Cuenta Protegida</h3>
-            <p className="text-xs text-gray-500">Tu nivel de seguridad es óptimo.</p>
+            <h3 className="font-medium text-xs uppercase tracking-wider text-neutral-900">Cuenta Protegida</h3>
+            <p className="text-[11px] font-light text-neutral-400 mt-0.5">Tu nivel de seguridad es óptimo.</p>
           </div>
         </div>
 
-        <section className="space-y-4">
-          <h4 className="text-[10px] font-black uppercase text-gray-400 tracking-widest px-2">Cambiar Contraseña</h4>
-          <form onSubmit={handleUpdatePassword} className="bg-white dark:bg-navy rounded-[2rem] p-6 border border-gray-100 dark:border-gray-800 space-y-4 shadow-sm">
+        {/* Sección: Cambiar Contraseña */}
+        <section className="space-y-3">
+          <h4 className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em] px-1">
+            Cambiar Contraseña
+          </h4>
+          <form 
+            onSubmit={handleUpdatePassword} 
+            className="bg-white border border-neutral-200/60 rounded-sm p-6 space-y-5"
+          >
             <div className="space-y-1.5">
-              <label className="text-[10px] font-black uppercase text-gray-400 ml-1">Contraseña Actual</label>
+              <label className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em]">
+                Contraseña Actual
+              </label>
               <input 
                 type="password" 
                 placeholder="••••••••" 
-                className="w-full h-12 bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 text-sm font-bold dark:text-white"
+                className="w-full h-12 bg-white border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide focus:outline-none focus:border-neutral-900 transition-all"
                 required
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-[10px] font-black uppercase text-gray-400 ml-1">Nueva Contraseña</label>
+              <label className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em]">
+                Nueva Contraseña
+              </label>
               <input 
                 type="password" 
                 placeholder="Mínimo 8 caracteres" 
-                className="w-full h-12 bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 text-sm font-bold dark:text-white"
+                className="w-full h-12 bg-white border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide placeholder-neutral-300 focus:outline-none focus:border-neutral-900 transition-all"
                 required
               />
             </div>
+            
             <button 
               type="submit"
               disabled={loading}
-              className={`w-full h-12 rounded-xl text-white text-xs font-black uppercase tracking-widest transition-all active:scale-95 flex items-center justify-center ${success ? 'bg-green-500' : 'bg-primary shadow-lg shadow-primary/20'}`}
+              className={`w-full h-12 rounded-sm text-[10px] font-semibold uppercase tracking-[0.3em] transition-all flex items-center justify-center border ${
+                success 
+                  ? 'bg-emerald-50 text-emerald-600 border-emerald-200/40' 
+                  : 'bg-neutral-950 text-white border-neutral-950 hover:bg-neutral-700'
+              }`}
             >
               {loading ? (
-                <div className="size-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                <span className="material-symbols-outlined text-xl animate-spin">
+                  autorenew
+                </span>
               ) : success ? (
-                <span className="flex items-center gap-2"><span className="material-symbols-outlined text-sm">check</span> Actualizada</span>
+                <span className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-base">check</span> 
+                  Actualizada
+                </span>
               ) : 'Actualizar Contraseña'}
             </button>
           </form>
         </section>
 
-        <section className="space-y-4">
-          <h4 className="text-[10px] font-black uppercase text-gray-400 tracking-widest px-2">Opciones de Acceso</h4>
-          <div className="bg-white dark:bg-navy rounded-[2rem] border border-gray-100 dark:border-gray-800 overflow-hidden shadow-sm">
-            <button className="w-full p-5 flex items-center justify-between border-b border-gray-50 dark:border-gray-800">
-                <div className="flex items-center gap-4">
-                    <span className="material-symbols-outlined text-gray-400">devices</span>
-                    <div className="text-left">
-                        <p className="text-sm font-bold dark:text-white">Dispositivos Activos</p>
-                        <p className="text-[10px] text-gray-400 uppercase">2 sesiones iniciadas</p>
-                    </div>
+        {/* Sección: Opciones de Acceso */}
+        <section className="space-y-3">
+          <h4 className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em] px-1">
+            Opciones de Acceso
+          </h4>
+          <div className="bg-white border border-neutral-200/60 rounded-sm overflow-hidden">
+            
+            {/* Opción 1: Dispositivos */}
+            <button className="w-full p-5 flex items-center justify-between border-b border-neutral-200/60 hover:bg-neutral-50/50 transition-colors group">
+              <div className="flex items-center gap-4">
+                <span className="material-symbols-outlined text-neutral-400 group-hover:text-neutral-900 transition-colors">
+                  devices
+                </span>
+                <div className="text-left">
+                  <p className="text-sm font-medium text-neutral-900 uppercase tracking-wide">
+                    Dispositivos Activos
+                  </p>
+                  <p className="text-[9px] font-semibold text-neutral-400 uppercase tracking-[0.15em] mt-0.5">
+                    2 sesiones iniciadas
+                  </p>
                 </div>
-                <span className="material-symbols-outlined text-gray-300">chevron_right</span>
+              </div>
+              <span className="material-symbols-outlined text-neutral-300 group-hover:text-neutral-900 transition-colors">
+                chevron_right
+              </span>
             </button>
-            <button className="w-full p-5 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                    <span className="material-symbols-outlined text-gray-400">verified_user</span>
-                    <div className="text-left">
-                        <p className="text-sm font-bold dark:text-white">Doble Factor (2FA)</p>
-                        <p className="text-[10px] text-gray-400 uppercase text-primary">Recomendado</p>
-                    </div>
+            
+            {/* Opción 2: Doble Factor */}
+            <div className="w-full p-5 flex items-center justify-between hover:bg-neutral-50/50 transition-colors">
+              <div className="flex items-center gap-4">
+                <span className="material-symbols-outlined text-neutral-400">
+                  verified_user
+                </span>
+                <div className="text-left">
+                  <p className="text-sm font-medium text-neutral-900 uppercase tracking-wide">
+                    Doble Factor (2FA)
+                  </p>
+                  <p className="text-[9px] font-semibold text-neutral-500 bg-neutral-50 border border-neutral-200/40 px-1.5 py-0.5 rounded-sm uppercase tracking-[0.15em] mt-1 inline-block">
+                    Recomendado
+                  </p>
                 </div>
-                <div className="h-6 w-11 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center px-1">
-                    <div className="h-4 w-4 bg-white rounded-full shadow" />
-                </div>
-            </button>
+              </div>
+              
+              {/* Toggle Switch Minimalista y Recto */}
+              <button className="h-5 w-10 bg-neutral-200 rounded-sm flex items-center px-0.5 cursor-pointer hover:bg-neutral-300 transition-colors">
+                <div className="h-4 w-4 bg-white rounded-sm shadow-sm" />
+              </button>
+            </div>
+
           </div>
         </section>
       </div>
