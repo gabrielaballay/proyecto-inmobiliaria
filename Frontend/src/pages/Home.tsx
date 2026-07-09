@@ -72,14 +72,7 @@ const Home: React.FC = () => {
           </h2>
         </div>
         
-        <div className="flex gap-6 items-center">
-          <button 
-            onClick={() => navigate('/notifications')}
-            className="relative flex items-center justify-center text-neutral-900 hover:text-neutral-500 transition-colors"
-          >
-            <span className="material-symbols-outlined font-light text-xl">notifications</span>
-            <span className="absolute -top-0.5 -right-0.5 size-1 bg-neutral-950 rounded-full"></span>
-          </button>
+        <div className="flex gap-6 items-center">          
           <button 
             onClick={() => navigate('/settings')}
             className="flex items-center justify-center text-neutral-900 hover:text-neutral-400 transition-colors"

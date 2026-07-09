@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import TopAppBar from '../components/TopAppBar';
 import { useAuth } from '../hooks/useAuth';
 
 const roleLabels: Record<string, string> = {
@@ -16,7 +15,6 @@ const Profile: React.FC = () => {
     ? `${user.firstName} ${user.lastName}`
     : 'Invitado';
 
-  
   const getInitials = () => {
     if (!user) return 'IN';
     return `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`.toUpperCase();
@@ -32,88 +30,101 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#0d1527] dark:to-background-dark antialiased">
-      <TopAppBar 
-        title="Mi Perfil" 
-        showBack 
-        rightIcon="edit" 
-        onRightClick={() => navigate('/profile/edit')} 
-      />
+    <div className="flex flex-col min-h-screen bg-[#fafafa] dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 tracking-wider font-sans antialiased transition-colors duration-300">
       
-      {}
-      <div className="max-w-md w-full mx-auto px-4 pt-6">
-        <div className="flex flex-col items-center pt-10 pb-8 bg-white dark:bg-navy rounded-[2.5rem] shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100/50 dark:border-gray-800/50 relative overflow-hidden group">
-          {}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all duration-700" />
+      <nav className="sticky top-0 z-50 flex items-center bg-[#fafafa]/80 dark:bg-neutral-950/80 backdrop-blur-xl px-8 py-6 justify-between border-b border-neutral-200/50 dark:border-neutral-800/50">
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
+          <div className="size-3 bg-neutral-900 dark:bg-white rounded-none rotate-45" /> 
+          <h2 className="text-neutral-900 dark:text-white text-xs font-semibold tracking-[0.4em] uppercase">
+            ORIENTE <span className="font-light text-neutral-400 dark:text-neutral-500">/ STUDIO</span>
+          </h2>
+        </div>
+        
+        <button 
+          onClick={() => navigate('/settings')}
+          className="flex items-center gap-1.5 text-neutral-900 dark:text-white hover:text-neutral-500 text-[10px] font-medium tracking-widest uppercase transition-colors"
+        >
+          <span className="material-symbols-outlined font-light text-lg">arrow_back</span>
+          Volver
+        </button>
+      </nav>
+
+      <div className="flex flex-col p-6 md:p-8 pb-20 max-w-xl mx-auto w-full">
+        
+        <div className="mb-10">
+          <h1 className="text-neutral-900 dark:text-white text-xl font-light tracking-widest uppercase">
+            MI CUENTA <span className="font-semibold">/ PERFIL</span>
+          </h1>
+          <div className="w-12 h-[1px] bg-neutral-950 dark:bg-white mt-4" />
+        </div>
+
+        <div className="flex flex-col items-center p-8 bg-white dark:bg-neutral-900 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60 shadow-[0_1px_3px_rgba(0,0,0,0.02)] relative overflow-hidden">
           
-          {}
-          <div className="relative">
-            <div className="size-28 rounded-full bg-gradient-to-tr from-primary to-primary/80 flex items-center justify-center text-white border-4 border-white dark:border-navy shadow-2xl overflow-hidden transition-transform duration-500 hover:scale-105">
-              <span className="text-3xl font-black tracking-wider drop-shadow-sm">
-                {getInitials()}
-              </span>
-            </div>
-            <div className="absolute bottom-1 right-1 size-5 bg-emerald-500 border-2 border-white dark:border-navy rounded-full animate-pulse" title="Conectado" />
+          <div className="size-20 rounded-none bg-neutral-950 dark:bg-neutral-800 flex items-center justify-center text-white shrink-0 mb-4">
+            <span className="text-lg font-medium tracking-widest">
+              {getInitials()}
+            </span>
           </div>
 
-          <h2 className="mt-5 text-2xl font-black text-gray-900 dark:text-white tracking-tight">{fullName}</h2>
-          <p className="text-gray-400 dark:text-gray-400 text-sm font-medium mt-1">{user?.email}</p>
+          <h2 className="text-sm font-semibold text-neutral-900 dark:text-white tracking-widest uppercase text-center">{fullName}</h2>
+          <p className="text-neutral-400 dark:text-neutral-500 text-xs font-light tracking-wide mt-1 text-center">{user?.email}</p>
           
           {roleLabel && (
-            <span className="mt-3 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full border border-primary/20">
+            <span className="mt-4 border border-neutral-200 dark:border-neutral-800 text-neutral-400 dark:text-neutral-500 text-[9px] font-medium uppercase tracking-[0.2em] px-4 py-1 rounded-none">
               {roleLabel}
             </span>
           )}
         </div>
-      </div>
 
-      {}
-      <div className="max-w-md w-full mx-auto p-4 mt-2 space-y-3.5">
-        
-        {}
-        <button 
-          onClick={() => navigate('/settings')}
-          className="w-full flex items-center justify-between p-5 bg-white dark:bg-navy rounded-2xl shadow-md shadow-gray-100/50 dark:shadow-none border border-gray-100/80 dark:border-gray-800/50 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 hover:shadow-lg group"
-        >
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl text-gray-500 dark:text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
-              <span className="material-symbols-outlined flex items-center justify-center text-xl">settings</span>
-            </div>
-            <span className="font-bold text-sm text-gray-800 dark:text-gray-200 tracking-wide">Ajustes de Cuenta</span>
-          </div>
-          <span className="material-symbols-outlined text-gray-300 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300">chevron_right</span>
-        </button>
+        <div className="mt-8 space-y-3">
 
-        {}
-        {user?.role === 'ADMIN' && (
           <button 
-            onClick={() => navigate('/admin/users')}
-            className="w-full flex items-center justify-between p-5 bg-white dark:bg-navy rounded-2xl shadow-md shadow-gray-100/50 dark:shadow-none border border-gray-100/80 dark:border-gray-800/50 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 hover:shadow-lg group"
+            onClick={() => navigate('/profile/edit')}
+            className="w-full flex items-center justify-between p-4 px-5 bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 rounded-sm hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-all duration-200 group"
           >
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl text-gray-500 dark:text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
-                <span className="material-symbols-outlined flex items-center justify-center text-xl">group</span>
+              <div className="text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white flex items-center justify-center transition-colors duration-200 shrink-0">
+                <span className="material-symbols-outlined font-light text-xl">edit</span>
               </div>
-              <span className="font-bold text-sm text-gray-800 dark:text-gray-200 tracking-wide">Gestionar Asesores</span>
+              <span className="font-medium text-xs text-neutral-900 dark:text-neutral-200 tracking-wider uppercase group-hover:text-neutral-500 transition-colors duration-200">Editar Perfil</span>
             </div>
-            <span className="material-symbols-outlined text-gray-300 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300">chevron_right</span>
+            <span className="material-symbols-outlined text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white group-hover:translate-x-0.5 transition-all duration-200 text-lg font-light">chevron_right</span>
           </button>
-        )}
+          
+          {user?.role === 'ADMIN' && (
+            <button 
+              onClick={() => navigate('/admin/users')}
+              className="w-full flex items-center justify-between p-4 px-5 bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 rounded-sm hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-all duration-200 group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white flex items-center justify-center transition-colors duration-200 shrink-0">
+                  <span className="material-symbols-outlined font-light text-xl">group</span>
+                </div>
+                <span className="font-medium text-xs text-neutral-900 dark:text-neutral-200 tracking-wider uppercase group-hover:text-neutral-500 transition-colors duration-200">Gestionar Asesores</span>
+              </div>
+              <span className="material-symbols-outlined text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white group-hover:translate-x-0.5 transition-all duration-200 text-lg font-light">chevron_right</span>
+            </button>
+          )}
 
-        {}
-        <div className="pt-4">
-          {}
-          <button 
-            onClick={handleLogout}
-            className="w-full flex items-center justify-center gap-2 p-4 text-rose-500 dark:text-rose-400 font-bold uppercase tracking-wider text-xs rounded-xl bg-rose-500/5 dark:bg-rose-500/10 border border-rose-500/10 hover:bg-rose-500/10 active:scale-[0.99] transition-all duration-300"
-          >
-            <span className="material-symbols-outlined text-sm">logout</span>
-            Cerrar Sesión del Sistema
-          </button>
+          <div className="pt-4">
+            <button 
+              onClick={handleLogout}
+              className="w-full tracking-widest uppercase bg-neutral-950 text-white dark:bg-neutral-900 text-[10px] font-medium py-3.5 px-8 hover:bg-neutral-800 dark:hover:bg-neutral-800 transition-all duration-300 text-center rounded-sm border border-transparent dark:border-neutral-800"
+            >
+              Cerrar Sesión del Sistema
+            </button>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center mt-12 gap-3">
+          <div className="w-12 h-[1px] bg-neutral-200 dark:bg-neutral-800" />
+          <p className="text-center text-[9px] text-neutral-400 uppercase tracking-[0.25em] font-light">
+            © 2026 ORIENTE ESTUDIO.
+          </p>
         </div>
       </div>
     </div>
   );
 };
 
-export default Profile;              
+export default Profile;

@@ -64,7 +64,7 @@ const PropertyDetail: React.FC = () => {
 
     return (
     <div className="relative flex min-h-screen w-full flex-col bg-white dark:bg-background-dark pb-32">
-      <TopAppBar title="Detalles" showBack rightIcon="favorite" />
+      <TopAppBar title="Detalles" showBack />
       <p className="text-white font-bold mt-2">
         {property.address}, {property.city}, {property.province}
       </p>

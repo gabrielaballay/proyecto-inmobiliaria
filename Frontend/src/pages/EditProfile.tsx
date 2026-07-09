@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import TopAppBar from '../components/TopAppBar';
 import { useAuth } from '../hooks/useAuth';
 import { updateProfile, changePassword } from '../services/auth.service';
 
@@ -24,6 +23,11 @@ const EditProfile: React.FC = () => {
     newPassword: ''
   });
 
+  const getInitials = () => {
+    if (!user) return 'IN';
+    return `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`.toUpperCase();
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -39,7 +43,9 @@ const EditProfile: React.FC = () => {
 
     try {
       const updated = await updateProfile(formData);
-      updateUser(updated);
+      if (updateUser) {
+        updateUser(updated);
+      }
       navigate('/profile');
     } catch (err: any) {
       setError(
@@ -77,135 +83,186 @@ const EditProfile: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark">
-      <TopAppBar title="Editar Perfil" showBack />
+    <div className="flex flex-col min-h-screen bg-[#fafafa] dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 tracking-wider font-sans antialiased transition-colors duration-300">
+      
+      <nav className="sticky top-0 z-50 flex items-center bg-[#fafafa]/80 dark:bg-neutral-950/80 backdrop-blur-xl px-8 py-6 justify-between border-b border-neutral-200/50 dark:border-neutral-800/50">
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
+          <div className="size-3 bg-neutral-900 dark:bg-white rounded-none rotate-45" /> 
+          <h2 className="text-neutral-900 dark:text-white text-xs font-semibold tracking-[0.4em] uppercase">
+            ORIENTE <span className="font-light text-neutral-400 dark:text-neutral-500">/ STUDIO</span>
+          </h2>
+        </div>
+        
+        <button 
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-1.5 text-neutral-900 dark:text-white hover:text-neutral-500 text-[10px] font-medium tracking-widest uppercase transition-colors"
+        >
+          <span className="material-symbols-outlined font-light text-lg">arrow_back</span>
+          Volver
+        </button>
+      </nav>
 
-      <div className="p-6 max-w-2xl mx-auto w-full animate-fade-in space-y-8">
-        {/* Avatar Section */}
-        <div className="flex flex-col items-center">
-          <div className="size-32 rounded-[3rem] bg-gray-100 dark:bg-navy flex items-center justify-center text-gray-300 border-4 border-white dark:border-gray-800 shadow-xl overflow-hidden">
-            <span className="material-symbols-outlined text-7xl">person</span>
+      <div className="flex flex-col p-6 md:p-8 pb-20 max-w-xl mx-auto w-full">
+        
+        <div className="mb-10">          
+          <h1 className="text-neutral-900 dark:text-white text-xl font-light tracking-widest uppercase">
+            PERFIL <span className="font-semibold">/ ACTUALIZAR</span>
+          </h1>
+          <div className="w-12 h-[1px] bg-neutral-950 dark:bg-white mt-4" />
+        </div>
+
+        <div className="flex items-center gap-6 bg-white dark:bg-neutral-900 p-6 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60 shadow-[0_1px_3px_rgba(0,0,0,0.02)] mb-8">
+          <div className="size-16 rounded-none bg-neutral-950 dark:bg-neutral-800 flex items-center justify-center text-white shrink-0">
+            <span className="text-base font-medium tracking-widest">{getInitials()}</span>
+          </div>
+          <div>
+            <h4 className="text-xs font-semibold tracking-[0.2em] uppercase text-neutral-900 dark:text-white">Fotografía de Cuenta</h4>
+            <p className="text-neutral-400 dark:text-neutral-500 text-xs font-light tracking-wide mt-1">Sincronizada con tu perfil corporativo.</p>
           </div>
         </div>
 
-        {/* Info Form */}
-        <form onSubmit={handleSave} className="space-y-8">
-          <div className="space-y-4">
-            <h3 className="text-xs font-black text-primary uppercase tracking-[0.2em] px-2">Información Personal</h3>
-            <div className="bg-white dark:bg-navy rounded-[2rem] p-6 border border-gray-100 dark:border-gray-800 space-y-5">
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-gray-400 ml-1 tracking-widest">Nombre</label>
-                <input 
-                  name="firstName"
-                  type="text" 
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  required
-                  minLength={2}
-                  className="w-full h-12 bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 text-sm font-bold dark:text-white focus:ring-2 focus:ring-primary/20 transition-all" 
-                />
-              </div>
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-gray-400 ml-1 tracking-widest">Apellido</label>
-                <input 
-                  name="lastName"
-                  type="text" 
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  required
-                  minLength={2}
-                  className="w-full h-12 bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 text-sm font-bold dark:text-white focus:ring-2 focus:ring-primary/20 transition-all" 
-                />
+        <div className="space-y-12">
+          
+          <form onSubmit={handleSave} className="flex flex-col gap-6">
+            <div>
+              <h3 className="text-[10px] font-medium tracking-[0.3em] uppercase text-neutral-400 dark:text-neutral-500 mb-4 pl-1">
+                Datos Personales
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white dark:bg-neutral-900 p-6 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60">
+                
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-medium tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-500">
+                    Nombre
+                  </label>
+                  <input 
+                    name="firstName"
+                    type="text" 
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    minLength={2}
+                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-medium tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-500">
+                    Apellido
+                  </label>
+                  <input 
+                    name="lastName"
+                    type="text" 
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                    minLength={2}
+                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2 md:col-span-2">
+                  <label className="text-[10px] font-medium tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-500">
+                    Email Corporativo
+                  </label>
+                  <input 
+                    name="email"
+                    type="email" 
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="space-y-4">
-            <h3 className="text-xs font-black text-primary uppercase tracking-[0.2em] px-2">Cuenta y Contacto</h3>
-            <div className="bg-white dark:bg-navy rounded-[2rem] p-6 border border-gray-100 dark:border-gray-800 space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-gray-400 ml-1 tracking-widest">Email</label>
-                <input 
-                  name="email"
-                  type="email" 
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full h-12 bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 text-sm font-bold dark:text-white focus:ring-2 focus:ring-primary/20 transition-all" 
-                />
+            {error && (
+              <p className="text-red-600 dark:text-red-400 text-[10px] font-medium tracking-widest uppercase text-center">
+                {error}
+              </p>
+            )}
+
+            <div className="flex gap-4 mt-2">
+              <button 
+                type="button" 
+                onClick={() => navigate('/profile')}
+                className="flex-1 tracking-widest uppercase bg-transparent text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 text-[10px] font-medium py-4 px-4 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-all duration-300 text-center rounded-sm"
+              >
+                Cancelar
+              </button>
+              <button 
+                type="submit"
+                disabled={loading}
+                className="flex-[2] tracking-widest uppercase bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 text-[10px] font-medium py-4 px-4 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-300 text-center rounded-sm disabled:opacity-50"
+              >
+                {loading ? 'Guardando...' : 'Guardar Cambios'}
+              </button>
+            </div>
+          </form>
+
+          <form onSubmit={handlePasswordSubmit} className="flex flex-col gap-6">
+            <div>
+              <h3 className="text-[10px] font-medium tracking-[0.3em] uppercase text-neutral-400 dark:text-neutral-500 mb-4 pl-1">
+                Seguridad
+              </h3>
+              <div className="flex flex-col gap-6 bg-white dark:bg-neutral-900 p-6 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60">
+                
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-medium tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-500">
+                    Contraseña Actual
+                  </label>
+                  <input 
+                    name="currentPassword"
+                    type="password" 
+                    value={passwordData.currentPassword}
+                    onChange={handlePasswordChange}
+                    required
+                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-medium tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-500">
+                    Nueva Contraseña
+                  </label>
+                  <input 
+                    name="newPassword"
+                    type="password" 
+                    placeholder="MÍNIMO 8 CARACTERES"
+                    value={passwordData.newPassword}
+                    onChange={handlePasswordChange}
+                    required
+                    minLength={8}
+                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors placeholder:text-neutral-300 dark:placeholder:text-neutral-700"
+                  />
+                </div>
               </div>
-            </div>
-          </div>
-
-          {error && (
-            <p className="text-red-500 text-xs font-bold px-2">{error}</p>
-          )}
-
-          <div className="pt-2 flex gap-4">
-            <button 
-              type="button" 
-              onClick={() => navigate('/profile')}
-              className="flex-1 h-14 rounded-2xl border border-gray-200 dark:border-gray-700 text-xs font-black uppercase tracking-[0.2em] text-gray-500 active:scale-95 transition-all"
-            >
-              Cancelar
-            </button>
-            <button 
-              type="submit"
-              disabled={loading}
-              className="flex-[2] bg-primary text-white h-14 rounded-2xl shadow-xl shadow-primary/20 font-black text-xs uppercase tracking-[0.2em] active:scale-95 transition-all flex items-center justify-center disabled:opacity-50"
-            >
-              {loading ? (
-                <div className="size-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-              ) : 'Guardar Cambios'}
-            </button>
-          </div>
-        </form>
-
-        {/* Security Section - Password */}
-        <form onSubmit={handlePasswordSubmit} className="space-y-4">
-          <h3 className="text-xs font-black text-primary uppercase tracking-[0.2em] px-2">Seguridad</h3>
-          <div className="bg-white dark:bg-navy rounded-[2rem] p-6 border border-gray-100 dark:border-gray-800 space-y-5">
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-black uppercase text-gray-400 ml-1 tracking-widest">Contraseña Actual</label>
-              <input 
-                name="currentPassword"
-                type="password" 
-                placeholder="••••••••" 
-                value={passwordData.currentPassword}
-                onChange={handlePasswordChange}
-                required
-                className="w-full h-12 bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 text-sm font-bold dark:text-white" 
-              />
-            </div>
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-black uppercase text-gray-400 ml-1 tracking-widest">Nueva Contraseña</label>
-              <input 
-                name="newPassword"
-                type="password" 
-                placeholder="Mínimo 8 caracteres" 
-                value={passwordData.newPassword}
-                onChange={handlePasswordChange}
-                required
-                minLength={8}
-                className="w-full h-12 bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 text-sm font-bold dark:text-white" 
-              />
             </div>
 
             {passwordError && (
-              <p className="text-red-500 text-xs font-bold">{passwordError}</p>
+              <p className="text-red-600 dark:text-red-400 text-[10px] font-medium tracking-widest uppercase text-center">
+                {passwordError}
+              </p>
             )}
 
             <button 
               type="submit"
               disabled={passwordLoading}
-              className="w-full h-12 rounded-xl border border-primary text-primary font-black text-xs uppercase tracking-widest active:scale-95 transition-all flex items-center justify-center disabled:opacity-50"
+              className="mt-2 tracking-widest uppercase bg-transparent text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 text-[10px] font-medium py-4 px-8 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-all duration-300 text-center rounded-sm disabled:opacity-50"
             >
-              {passwordLoading ? (
-                <div className="size-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
-              ) : 'Actualizar Contraseña'}
+              {passwordLoading ? 'Actualizando...' : 'Actualizar Contraseña'}
             </button>
-          </div>
-        </form>
+          </form>
+
+        </div>
+
+        <div className="flex flex-col items-center mt-16 gap-3">
+          <div className="w-12 h-[1px] bg-neutral-200 dark:bg-neutral-800" />
+          <p className="text-center text-[9px] text-neutral-400 uppercase tracking-[0.25em] font-light">
+            © 2026 ORIENTE ESTUDIO.
+          </p>
+        </div>
+
       </div>
     </div>
   );
