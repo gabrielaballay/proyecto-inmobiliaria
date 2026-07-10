@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import TopAppBar from "../components/TopAppBar";
 import { useAuth } from "../hooks/useAuth";
 import {
@@ -9,6 +10,7 @@ import {
     deleteUser
 } from "../services/user.service";
 import { User } from "../types/user";
+import { showConfirmDialog } from "../components/ConfirmDialog";
 
 const roleLabels: Record<string, string> = {
     ADMIN: "Administrador",
@@ -31,7 +33,6 @@ const AdminUsers: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState(emptyForm);
-    const [formError, setFormError] = useState<string | null>(null);
     const [saving, setSaving] = useState(false);
     const [togglingId, setTogglingId] = useState<string | null>(null);
 
@@ -66,11 +67,9 @@ const AdminUsers: React.FC = () => {
 
     async function handleCreate(e: React.FormEvent) {
         e.preventDefault();
-        setFormError(null);
         setSaving(true);
 
         try {
-            console.log(formData);
             const newUser = await createUser(formData);
 
             setUsers(current => [...current, newUser].sort(
@@ -80,10 +79,7 @@ const AdminUsers: React.FC = () => {
             setFormData(emptyForm);
             setShowForm(false);
         } catch (error: any) {
-            setFormError(
-                error.response?.data?.message ??
-                "No fue posible crear el vendedor."
-            );
+            console.error(error);
         } finally {
             setSaving(false);
         }
@@ -100,27 +96,26 @@ const AdminUsers: React.FC = () => {
             );
         } catch (error) {
             console.error(error);
-            alert("No fue posible cambiar el estado del usuario.");
         } finally {
             setTogglingId(null);
         }
     }
 
     async function handleDelete(id: string) {
-        const confirmed = window.confirm(
-            "¿Está seguro que desea eliminar este usuario?"
-        );
-
-        if (!confirmed) return;
-
-        try {
-            console.log(id)
-            await deleteUser(id);
-            setUsers(current => current.filter(p => p.id !== id));
-        } catch (error) {
-            console.error(error);
-            alert("No fue posible eliminar la propiedad.");
-        }
+        showConfirmDialog({
+            title: "¿Confirmas la eliminación de este usuario?",
+            description:
+                "Esta acción eliminará el usuario definitivamente.",
+            loadingText: "Eliminando usuario...",
+            successText: "Usuario eliminado correctamente.",
+            errorText: "No fue posible eliminar el usuario.",
+            onConfirm: async () => {
+                await deleteUser(id);
+                setUsers(current =>
+                    current.filter(u => u.id !== id)
+                );
+            }
+        });
     }
 
     if (loading) {
@@ -145,7 +140,7 @@ const AdminUsers: React.FC = () => {
                     </h1>
                     <div className="w-12 h-[1px] bg-neutral-950 dark:bg-white mt-4" />
                 </div>
-                {/* Cabecera de la Sección */}
+
                 <div className="flex justify-between items-center border-b border-neutral-200/50 pb-6 mb-6">
                     <h2 className="text-neutral-900 font-medium text-xs uppercase tracking-[0.3em]">
                         Usuarios
@@ -165,7 +160,6 @@ const AdminUsers: React.FC = () => {
                     </button>
                 </div>
 
-                {/* Formulario Expandible (Estilo Panel de Filtros) */}
                 {showForm && (
                     <form
                         onSubmit={handleCreate}
@@ -197,20 +191,21 @@ const AdminUsers: React.FC = () => {
                                 />
                             </div>
                         </div>
-                        {user?.role == "ADMIN" &&
-                            (
-                                <div className="space-y-1.5">
-                                    <label className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em]">Rol</label>
-                                    <select
-                                        value={formData.role}
-                                        onChange={e => setFormData({ ...formData, role: e.target.value })}
-                                        className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
-                                    >
-                                        <option value="SELLER">Vendedor</option>
-                                        <option value="ADMIN">Administrador</option>
-                                    </select>
-                                </div>
-                            )}
+
+                        {user?.role === "ADMIN" && (
+                            <div className="space-y-1.5">
+                                <label className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em]">Rol</label>
+                                <select
+                                    value={formData.role}
+                                    onChange={e => setFormData({ ...formData, role: e.target.value })}
+                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                >
+                                    <option value="SELLER">Vendedor</option>
+                                    <option value="ADMIN">Administrador</option>
+                                </select>
+                            </div>
+                        )}
+
                         <div className="space-y-1.5">
                             <label className="text-[9px] font-semibold uppercase text-neutral-400 tracking-[0.3em]">Email</label>
                             <input
@@ -236,10 +231,6 @@ const AdminUsers: React.FC = () => {
                             />
                         </div>
 
-                        {formError && (
-                            <p className="text-red-500 text-[11px] font-medium tracking-wide uppercase">{formError}</p>
-                        )}
-
                         <button
                             type="submit"
                             disabled={saving}
@@ -254,7 +245,6 @@ const AdminUsers: React.FC = () => {
                     </form>
                 )}
 
-                {/* Listado de Usuarios */}
                 <div className="grid gap-4">
                     {users.length === 0 ? (
                         <div className="py-24 text-center border border-dashed border-neutral-200 rounded-sm">
@@ -271,12 +261,10 @@ const AdminUsers: React.FC = () => {
                                 key={u.id}
                                 className="bg-white border border-neutral-200/60 rounded-sm flex items-center gap-5 p-4 hover:border-neutral-900 transition-all duration-300"
                             >
-                                {/* Avatar sutil plano */}
                                 <div className="size-12 rounded-sm bg-neutral-50 border border-neutral-200/40 flex items-center justify-center text-neutral-400 shrink-0">
                                     <span className="material-symbols-outlined text-xl">person</span>
                                 </div>
 
-                                {/* Información del Usuario */}
                                 <div className="flex-1 min-w-0">
                                     <h4 className="text-neutral-900 font-medium text-sm uppercase tracking-wide truncate">
                                         {u.firstName} {u.lastName}
@@ -298,10 +286,10 @@ const AdminUsers: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* Acción de Estado */}                                
                                 {u.id !== user?.id && (
                                     <div className="border-l gap-2 border-neutral-100 pl-4 h-12 flex items-center">
                                         <button
+                                            type="button"
                                             onClick={() => handleDelete(u.id)}
                                             className="size-9 rounded-sm border border-neutral-200/60 text-neutral-400 flex items-center justify-center hover:border-red-500 hover:text-red-500 transition-colors"
                                             title="Eliminar"
@@ -312,6 +300,7 @@ const AdminUsers: React.FC = () => {
                                         </button>
 
                                         <button
+                                            type="button"
                                             onClick={() => handleToggleStatus(u.id)}
                                             disabled={togglingId === u.id}
                                             className={`h-9 px-4 rounded-sm text-[9px] font-semibold uppercase tracking-[0.2em] border transition-colors disabled:opacity-50 ${u.active

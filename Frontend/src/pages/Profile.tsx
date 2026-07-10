@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 
 const roleLabels: Record<string, string> = {
   ADMIN: 'Administrador',
-  SELLER: 'Asesor Comercial',
+  SELLER: 'Vendedor',
 };
 
 const Profile: React.FC = () => {
@@ -55,12 +55,12 @@ const Profile: React.FC = () => {
           <h1 className="text-neutral-900 dark:text-white text-xl font-light tracking-widest uppercase">
             MI CUENTA <span className="font-semibold">/ PERFIL</span>
           </h1>
-          <div className="w-12 h-[1px] bg-neutral-950 dark:bg-white mt-4" />
+          <div className="w-12 h-[1px] bg-neutral-955 dark:bg-white mt-4" />
         </div>
 
         <div className="flex flex-col items-center p-8 bg-white dark:bg-neutral-900 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60 shadow-[0_1px_3px_rgba(0,0,0,0.02)] relative overflow-hidden">
           
-          <div className="size-20 rounded-none bg-neutral-950 dark:bg-neutral-800 flex items-center justify-center text-white shrink-0 mb-4">
+          <div className="size-20 rounded-none bg-neutral-955 dark:bg-neutral-800 flex items-center justify-center text-white shrink-0 mb-4">
             <span className="text-lg font-medium tracking-widest">
               {getInitials()}
             </span>
@@ -100,7 +100,7 @@ const Profile: React.FC = () => {
                 <div className="text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white flex items-center justify-center transition-colors duration-200 shrink-0">
                   <span className="material-symbols-outlined font-light text-xl">group</span>
                 </div>
-                <span className="font-medium text-xs text-neutral-900 dark:text-neutral-200 tracking-wider uppercase group-hover:text-neutral-500 transition-colors duration-200">Gestionar Asesores</span>
+                <span className="font-medium text-xs text-neutral-900 dark:text-neutral-200 tracking-wider uppercase group-hover:text-neutral-500 transition-colors duration-200">Gestionar Vendedores</span>
               </div>
               <span className="material-symbols-outlined text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white group-hover:translate-x-0.5 transition-all duration-200 text-lg font-light">chevron_right</span>
             </button>
@@ -109,7 +109,7 @@ const Profile: React.FC = () => {
           <div className="pt-4">
             <button 
               onClick={handleLogout}
-              className="w-full tracking-widest uppercase bg-neutral-950 text-white dark:bg-neutral-900 text-[10px] font-medium py-3.5 px-8 hover:bg-neutral-800 dark:hover:bg-neutral-800 transition-all duration-300 text-center rounded-sm border border-transparent dark:border-neutral-800"
+              className="w-full tracking-widest uppercase bg-neutral-955 text-white dark:bg-neutral-900 text-[10px] font-medium py-3.5 px-8 hover:bg-neutral-800 dark:hover:bg-neutral-800 transition-all duration-300 text-center rounded-sm border border-transparent dark:border-neutral-800"
             >
               Cerrar Sesión del Sistema
             </button>

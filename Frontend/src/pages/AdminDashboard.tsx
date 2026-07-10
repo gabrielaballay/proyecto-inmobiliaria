@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import TopAppBar from "../components/TopAppBar";
 import {
     getProperties,
@@ -8,6 +9,7 @@ import {
 import { Property } from "../types/property";
 import { useAuth } from "../hooks/useAuth";
 import { getImageUrl } from "../utils/image";
+import { showConfirmDialog } from "../components/ConfirmDialog";
 
 const AdminDashboard: React.FC = () => {
     const navigate = useNavigate();
@@ -42,25 +44,31 @@ const AdminDashboard: React.FC = () => {
             setProperties(data);
         } catch (error) {
             console.error(error);
+            toast.error("Error de sistema", {
+                description: "No fue posible recuperar el catálogo de propiedades."
+            });
         } finally {
             setLoading(false);
         }
     }
 
     async function handleDelete(id: string) {
-        const confirmed = window.confirm(
-            "¿Está seguro que desea eliminar esta propiedad?"
-        );
+        showConfirmDialog({
+            title: "¿Confirmas la eliminación de esta propiedad?",
+            description:
+                "Esta acción quitará el anuncio de forma permanente.",
+            loadingText: "Eliminando propiedad...",
+            successText: "Propiedad eliminada correctamente.",
+            errorText: "No fue posible eliminar la propiedad.",
+            onConfirm: async () => {
 
-        if (!confirmed) return;
+                await deleteProperty(id);
 
-        try {
-            await deleteProperty(id);
-            setProperties(current => current.filter(p => p.id !== id));
-        } catch (error) {
-            console.error(error);
-            alert("No fue posible eliminar la propiedad.");
-        }
+                setProperties(current =>
+                    current.filter(p => p.id !== id)
+                );
+            }
+        });
     }
 
     if (loading) {
@@ -85,10 +93,10 @@ const AdminDashboard: React.FC = () => {
                     </h1>
                     <div className="w-12 h-[1px] bg-neutral-950 dark:bg-white mt-4" />
                 </div>
-                {/* Cabecera del Dashboard */}
+
                 <div className="flex justify-between items-center border-b border-neutral-200/50 pb-6 mb-6">
                     <h2 className="text-neutral-900 font-medium text-xs uppercase tracking-[0.3em]">
-                        Tus Publicaciones 
+                        Tus Publicaciones
                         <span className="text-neutral-400 font-light ml-1">({properties.length})</span>
                     </h2>
                     <button
@@ -102,7 +110,6 @@ const AdminDashboard: React.FC = () => {
                     </button>
                 </div>
 
-                {/* Listado de Propiedades */}
                 <div className="grid gap-4">
                     {properties.length === 0 ? (
                         <div className="py-24 text-center border border-dashed border-neutral-200 rounded-sm">
@@ -119,7 +126,6 @@ const AdminDashboard: React.FC = () => {
                                 key={property.id}
                                 className="bg-white border border-neutral-200/60 rounded-sm flex items-center gap-5 p-4 hover:border-neutral-900 transition-all duration-300"
                             >
-                                {/* Imagen contenedor tipo Thumbnail plano */}
                                 <div className="size-20 bg-neutral-900 rounded-sm overflow-hidden shrink-0 relative">
                                     <img
                                         src={
@@ -133,7 +139,6 @@ const AdminDashboard: React.FC = () => {
                                     />
                                 </div>
 
-                                {/* Detalles de la Propiedad */}
                                 <div className="flex-1 min-w-0">
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                                         <h4 className="text-neutral-900 font-medium text-sm uppercase tracking-wide truncate">
@@ -143,7 +148,7 @@ const AdminDashboard: React.FC = () => {
                                             {formatPrice(property.price)}
                                         </span>
                                     </div>
-                                    
+
                                     <p className="text-neutral-400 text-[10px] font-light uppercase tracking-wider mt-1 flex items-center gap-0.5 truncate">
                                         <span className="material-symbols-outlined text-xs">location_on</span>
                                         {property.address}, {property.city}
@@ -159,7 +164,6 @@ const AdminDashboard: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* Botones de Acción */}
                                 <div className="flex gap-2 border-l border-neutral-100 pl-4 h-12 items-center">
                                     <button
                                         onClick={() => navigate(`/admin/edit/${property.id}`)}

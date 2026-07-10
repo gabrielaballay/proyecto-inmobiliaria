@@ -11,7 +11,7 @@ export const createUserSchema = z.object({
 
     password: z.string().min(8),
 
-    role: z.literal(UserRole.SELLER)
+    role: z.enum(UserRole)
 
 });
 

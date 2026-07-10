@@ -7,7 +7,6 @@ import { getImageUrl } from "../utils/image";
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
-
   const [properties, setProperties] = useState<Property[]>([]);
   const [randomPhotos, setRandomPhotos] = useState<string[]>([]);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
@@ -56,13 +55,11 @@ const Home: React.FC = () => {
     navigate('/list', { state: { filtroInicial: tipo } });
   };
 
-
   const fallbackImage = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop";
   const heroImage = randomPhotos[currentPhotoIndex] || fallbackImage;
 
   return (
     <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
-
 
       <nav className="sticky top-0 z-50 flex items-center bg-[#fafafa]/80 backdrop-blur-xl px-8 py-6 justify-between border-b border-neutral-200/50">
         <div className="flex items-center gap-3">
@@ -82,7 +79,6 @@ const Home: React.FC = () => {
         </div>
       </nav>
 
-      { }
       <div className="px-6 md:px-12 mt-4">
         <div className="relative w-full h-[45vh] overflow-hidden bg-neutral-900 rounded-sm">
           <img
@@ -108,21 +104,19 @@ const Home: React.FC = () => {
             </button>
           </div>
 
-          {/* Líneas de progreso sutiles abajo a la derecha */}
           <div className="absolute bottom-6 right-8 flex gap-2 z-10">
             {randomPhotos.length > 0 && randomPhotos.map((_, i) => (
               <div
                 key={i}
-                className={`h-[2px] transition-all duration-500 ${i === currentPhotoIndex ? 'w-8 bg-white' : 'w-2 bg-white/20'}`}
+                className="h-[2px] transition-all duration-500"
+                style={{ width: i === currentPhotoIndex ? '2rem' : '0.5rem', backgroundColor: i === currentPhotoIndex ? '#ffffff' : 'rgba(255,255,255,0.2)' }}
               />
             ))}
           </div>
         </div>
       </div>
 
-      { }
       <section className="px-6 md:px-12 mt-16 max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Bloque Ventas */}
         <button
           onClick={() => navegarConFiltro('VENTA')}
           className="group relative h-40 w-full overflow-hidden bg-neutral-900 text-white transition-all duration-500 border border-neutral-200/60 rounded-sm"
@@ -143,7 +137,6 @@ const Home: React.FC = () => {
           </div>
         </button>
 
-        { }
         <button
           onClick={() => navegarConFiltro('ALQUILER')}
           className="group relative h-40 w-full overflow-hidden bg-neutral-900 text-white transition-all duration-500 border border-neutral-200/60 rounded-sm"
@@ -165,7 +158,6 @@ const Home: React.FC = () => {
         </button>
       </section>
 
-      {/* FRANJA DE TASACIÓN - GEOMÉTRICA Y SUTIL */}
       <section className="mt-16 px-6 md:px-12 w-full max-w-5xl mx-auto">
         <div className="border-t border-neutral-200 py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="max-w-md">
@@ -185,12 +177,10 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      { }
-      { }
+      {/* FOOTER */}
       <footer className="bg-neutral-950 text-neutral-400 py-16 px-8 mt-24 border-t border-neutral-900 text-center">
         <div className="max-w-xl mx-auto flex flex-col items-center">
 
-          {/* Logo Principal */}
           <img
             src="./images/logo.png"
             alt="Logo"
@@ -198,14 +188,11 @@ const Home: React.FC = () => {
             onError={(e) => (e.currentTarget.style.display = 'none')}
           />
 
-          { }
           <p className="text-neutral-400 text-[10px] font-light uppercase tracking-[0.3em] mb-8">
             Gestión Inmobiliaria Integral
           </p>
 
-          { }
           <div className="flex justify-center items-center gap-10 mb-8 text-neutral-400">
-            { }
             <a
               href="https://facebook.com"
               target="_blank"
@@ -217,7 +204,6 @@ const Home: React.FC = () => {
               </svg>
             </a>
 
-            { }
             <a
               href="https://wa.me/542664887159"
               target="_blank"
@@ -229,7 +215,6 @@ const Home: React.FC = () => {
               </svg>
             </a>
 
-            { }
             <a
               href="mailto:contacto@orientepropiedades.com"
               className="hover:text-white transition-colors duration-300 flex items-center justify-center"
@@ -240,16 +225,30 @@ const Home: React.FC = () => {
             </a>
           </div>
 
-          { }
-          <p className="text-neutral-400 text-[10px] uppercase tracking-[0.2em] font-light mb-4">
+          <p className="text-neutral-400 text-[10px] uppercase tracking-[0.2em] font-light mb-6">
             Rawson 75, San Luis Capital
           </p>
 
-          { }
-          <div className="w-16 h-[1px] bg-neutral-800 mb-4" />
+          {/* Enlaces Editoriales Inyectados */}
+          <div className="flex justify-center items-center gap-6 mb-8 text-[9px] uppercase tracking-[0.25em] font-light text-neutral-500">
+            <button 
+              onClick={() => navigate('/settings/help')} 
+              className="hover:text-neutral-200 transition-colors duration-200"
+            >
+              Ayuda y Soporte
+            </button>
+            <span className="text-neutral-800">•</span>
+            <button 
+              onClick={() => navigate('/settings/terms')} 
+              className="hover:text-neutral-200 transition-colors duration-200"
+            >
+              Términos Legales
+            </button>
+          </div>
 
-          { }
-          <p className="text-[#404040] text-[9px] uppercase tracking-widest font-light">
+          <div className="w-12 h-[1px] bg-neutral-900 mb-6" />
+
+          <p className="text-[#333333] text-[8px] uppercase tracking-[0.25em] font-light">
             © 2026 ORIENTE PROPIEDADES. Todos los derechos reservados.
           </p>
 
