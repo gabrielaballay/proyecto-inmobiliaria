@@ -34,7 +34,8 @@ export function showConfirmDialog({
         justifyContent: "center",
         alignItems: "center",
         paddingTop: "40px",
-        zIndex: "999999"
+        zIndex: "999999",
+        borderRadius: "4px"
     });
 
     document.body.appendChild(overlay);

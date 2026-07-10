@@ -10,6 +10,7 @@ import { Property } from "../types/property";
 import { useAuth } from "../hooks/useAuth";
 import { getImageUrl } from "../utils/image";
 import { showConfirmDialog } from "../components/ConfirmDialog";
+import { showApiError } from "../utils/showApiError";
 
 const AdminDashboard: React.FC = () => {
     const navigate = useNavigate();
@@ -43,10 +44,10 @@ const AdminDashboard: React.FC = () => {
             const data = await getProperties();
             setProperties(data);
         } catch (error) {
-            console.error(error);
-            toast.error("Error de sistema", {
-                description: "No fue posible recuperar el catálogo de propiedades."
-            });
+           showApiError(error);
+            // toast.error("Error de sistema", {
+            //     description: "No fue posible recuperar el catálogo de propiedades."
+            // });
         } finally {
             setLoading(false);
         }

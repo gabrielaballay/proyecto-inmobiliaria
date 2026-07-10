@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
 import TopAppBar from "../components/TopAppBar";
 import { useAuth } from "../hooks/useAuth";
 import {
@@ -11,6 +10,7 @@ import {
 } from "../services/user.service";
 import { User } from "../types/user";
 import { showConfirmDialog } from "../components/ConfirmDialog";
+import { showApiError } from "../utils/showApiError";
 
 const roleLabels: Record<string, string> = {
     ADMIN: "Administrador",
@@ -55,7 +55,7 @@ const AdminUsers: React.FC = () => {
             const data = await getUsers();
             setUsers(data);
         } catch (error) {
-            console.error(error);
+            showApiError(error);
         } finally {
             setLoading(false);
         }
@@ -79,7 +79,7 @@ const AdminUsers: React.FC = () => {
             setFormData(emptyForm);
             setShowForm(false);
         } catch (error: any) {
-            console.error(error);
+            showApiError(error);
         } finally {
             setSaving(false);
         }
@@ -95,7 +95,7 @@ const AdminUsers: React.FC = () => {
                 current.map(u => (u.id === id ? updated : u))
             );
         } catch (error) {
-            console.error(error);
+           showApiError(error);
         } finally {
             setTogglingId(null);
         }

@@ -16,6 +16,8 @@ import {
 
 import { useAuth } from "../hooks/useAuth";
 import { getImageUrl } from "../utils/image";
+import { showApiError } from "../utils/showApiError";
+import { showApiSucces } from "../utils/showApiSuccess";
 
 const PropertyForm: React.FC = () => {
     const navigate = useNavigate();
@@ -78,8 +80,7 @@ const PropertyForm: React.FC = () => {
             setRemovedImageIds([]);
         }
         catch (error) {
-            console.error(error);
-            alert("No fue posible cargar la propiedad.");
+            showApiError(error);
         }
         finally {
             setLoading(false);
@@ -90,6 +91,7 @@ const PropertyForm: React.FC = () => {
         if (!event.target.files) return;
 
         const files = Array.from(event.target.files);
+
         const previews: PropertyImage[] = files.map((file, index) => ({
             id: crypto.randomUUID(),
             url: URL.createObjectURL(file),
@@ -155,12 +157,11 @@ const PropertyForm: React.FC = () => {
             if (newImages.length > 0) {
                 await uploadImages(property.id, newImages.map(n => n.file));
             }
-
+            showApiSucces("Se guarda correctamente.");
             navigate("/dashboard");
         }
         catch (error) {
-            console.error(error);
-            alert("No fue posible guardar la propiedad.");
+            showApiError(error);
         }
         finally {
             setLoading(false);
