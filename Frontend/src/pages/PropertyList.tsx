@@ -4,7 +4,6 @@ import TopAppBar from '../components/TopAppBar';
 import { getProperties } from '../services/property.service';
 import { Property, ViewMode } from '../types';
 import { getImageUrl } from '../utils/image';
-import { PropertyStatus } from '../types/property';
 
 const statusLabels: Record<string, string> = {
   SOLD: 'Vendido',

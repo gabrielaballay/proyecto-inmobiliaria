@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { appConfig } from "../config/appConfig";
 
 interface TopAppBarProps {
   showBack?: boolean;
@@ -45,7 +46,7 @@ const TopAppBar: React.FC<TopAppBarProps> = ({
             <div className="size-3 bg-neutral-900 dark:bg-white rotate-45" />
 
             <h2 className="text-neutral-900 dark:text-white text-xs font-semibold tracking-[0.4em] uppercase">
-              ORIENTE{" "}
+              {appConfig.companyShortName}{" "}
               <span className="font-light text-neutral-400 dark:text-neutral-500">
                 / STUDIO
               </span>

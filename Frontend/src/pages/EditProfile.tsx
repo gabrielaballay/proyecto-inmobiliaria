@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 import { updateProfile, changePassword } from '../services/auth.service';
 import SectionHeader from '../components/SectionHeader';
 import TopAppBar from '../components/TopAppBar';
+import { appConfig } from '../config/appConfig';
 
 const EditProfile: React.FC = () => {
   const navigate = useNavigate();
@@ -91,7 +92,7 @@ const EditProfile: React.FC = () => {
       <TopAppBar showBack/>
 
       <div className="flex flex-col p-6 md:p-8 pb-20 max-w-xl mx-auto w-full">
-        <SectionHeader title = "PERFIL" subtitle="ACTUALIZAR"/>
+        <SectionHeader title = {appConfig.companyShortName} subtitle="ACTUALIZAR PERFIL"/>
         <div className="flex items-center gap-6 bg-white dark:bg-neutral-900 p-6 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60 shadow-[0_1px_3px_rgba(0,0,0,0.02)] mb-8">
           <div className="size-16 rounded-none bg-neutral-950 dark:bg-neutral-800 flex items-center justify-center text-white shrink-0">
             <span className="text-base font-medium tracking-widest">{getInitials()}</span>
@@ -239,7 +240,7 @@ const EditProfile: React.FC = () => {
         <div className="flex flex-col items-center mt-16 gap-3">
           <div className="w-12 h-[1px] bg-neutral-200 dark:bg-neutral-800" />
           <p className="text-center text-[9px] text-neutral-400 uppercase tracking-[0.25em] font-light">
-            © 2026 ORIENTE ESTUDIO.
+            © 2026 {appConfig.companyName}.
           </p>
         </div>
 

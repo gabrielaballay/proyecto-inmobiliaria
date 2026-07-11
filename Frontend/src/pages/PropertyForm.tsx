@@ -19,6 +19,7 @@ import { getImageUrl } from "../utils/image";
 import { showApiError } from "../utils/showApiError";
 import { showApiSucces } from "../utils/showApiSuccess";
 import SectionHeader from "../components/SectionHeader";
+import { appConfig } from "../config/appConfig";
 
 const PropertyForm: React.FC = () => {
     const navigate = useNavigate();
@@ -174,7 +175,7 @@ const PropertyForm: React.FC = () => {
             <TopAppBar showBack />
 
             <form onSubmit={handleSubmit} className="px-6 py-12 max-w-3xl mx-auto w-full space-y-12 animate-fade-in pb-32">
-                <SectionHeader title="PROPIEDAD" subtitle={isEditing ? "EDITAR" : "NUEVA"} />
+                <SectionHeader title={appConfig.companyShortName} subtitle={isEditing ? "EDITAR PROPIEDAD" : "NUEVA PROPIEDAD"} />
                 {/* SECCIÓN 1: INFORMACIÓN GENERAL */}
                 <section className="space-y-6">
                     <div className="border-b border-neutral-200 pb-2">

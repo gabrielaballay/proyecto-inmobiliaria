@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TopAppBar from "../components/TopAppBar";
 import { useAuth } from "../hooks/useAuth";
+import { appConfig } from "../config/appConfig";
 
 const Login: React.FC = () => {
     const navigate = useNavigate();
@@ -56,7 +57,7 @@ const Login: React.FC = () => {
                             Ingreso al Sistema
                         </h2>
                         <p className="text-neutral-400 text-xs font-medium tracking-wide">
-                            Gestioná tus propiedades en Oriente
+                            Gestioná tus propiedades en {appConfig.companyName}
                         </p>
                     </div>
 
@@ -75,7 +76,7 @@ const Login: React.FC = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
-                                    placeholder="correo@oriente.com"
+                                    placeholder="correo@mail.com"
                                     className="w-full h-12 bg-[#fafafa] border border-neutral-200 rounded-xl pl-12 pr-4 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 transition-all duration-200"
                                 />
                             </div>

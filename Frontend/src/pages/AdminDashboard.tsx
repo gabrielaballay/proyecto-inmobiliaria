@@ -11,6 +11,7 @@ import { getImageUrl } from "../utils/image";
 import { showConfirmDialog } from "../components/ConfirmDialog";
 import { showApiError } from "../utils/showApiError";
 import SectionHeader from "../components/SectionHeader";
+import {appConfig} from "../config/appConfig"
 
 const AdminDashboard: React.FC = () => {
     const navigate = useNavigate();
@@ -85,7 +86,7 @@ const AdminDashboard: React.FC = () => {
         <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
             <TopAppBar showBack />
             <div className="px-6 md:px-12 py-8 max-w-5xl mx-auto w-full flex-1">
-                <SectionHeader title="GESTION" subtitle="PROPIEDADES" />
+                <SectionHeader title={appConfig.companyShortName} subtitle="PROPIEDADES" />
                 <div className="flex justify-between items-center border-b border-neutral-200/50 pb-6 mb-6">
                     <h2 className="text-neutral-900 font-medium text-xs uppercase tracking-[0.3em]">
                         Tus Publicaciones

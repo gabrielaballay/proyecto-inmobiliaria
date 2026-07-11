@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import TopAppBar from '../components/TopAppBar';
 import SectionHeader from '../components/SectionHeader';
+import { appConfig } from '../config/appConfig';
 
 const roleLabels: Record<string, string> = {
   ADMIN: 'Administrador',
@@ -98,7 +99,7 @@ const Profile: React.FC = () => {
         <div className="flex flex-col items-center mt-12 gap-3">
           <div className="w-12 h-[1px] bg-neutral-200 dark:bg-neutral-800" />
           <p className="text-center text-[9px] text-neutral-400 uppercase tracking-[0.25em] font-light">
-            © 2026 ORIENTE ESTUDIO.
+            © 2026 {appConfig.companyName}.
           </p>
         </div>
       </div>

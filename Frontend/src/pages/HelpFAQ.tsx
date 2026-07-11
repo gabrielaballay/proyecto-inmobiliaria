@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopAppBar from '../components/TopAppBar';
 import SectionHeader from '../components/SectionHeader';
+import { appConfig } from '../config/appConfig';
 
 const HelpFAQ: React.FC = () => {
   const navigate = useNavigate();
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   const faqs = [
-    { q: "¿Cómo reservo una propiedad?", a: "Para reservar, debes contactarnos vía WhatsApp al 2664887159 o visitarnos en Rawson 00. Un asesor te guiará con la documentación." },
+    { q: "¿Cómo reservo una propiedad?", a:  `Para reservar, debes contactarnos vía WhatsApp al ${appConfig.whatsapp} o visitarnos en ${appConfig.address}. Un asesor te guiará con la documentación.` },
     { q: "¿Qué requisitos piden para alquilar?", a: "Generalmente solicitamos recibo de sueldo del inquilino y dos garantes con recibo de sueldo o una garantía propietaria." },
-    { q: "¿Tienen oficina física?", a: "Sí, estamos ubicados en Rawson 00, San Luis Capital. Nuestro horario de atención es de Lunes a Viernes de 9:00 a 18:00 hs." },
-    { q: "¿Cómo puedo tasar mi propiedad?", a: "Escríbenos a gabi@propiedades.com o por WhatsApp para coordinar una visita técnica y tasar tu propiedad sin compromiso." },
+    { q: "¿Tienen oficina física?", a: `Sí, estamos ubicados en ${appConfig.address}. Nuestro horario de atención es de Lunes a Viernes de 9:00 a 18:00 hs.` },
+    { q: "¿Cómo puedo tasar mi propiedad?", a: `Escríbenos a ${appConfig.email} o por WhatsApp para coordinar una visita técnica y tasar tu propiedad sin compromiso.` },
   ];
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/542664887159?text=Hola!%20Necesito%20ayuda%20con%20la%20app%20de%20Oriente.', '_blank');
+    window.open(`https://wa.me/${appConfig.whatsapp}?text=Hola!%20Necesito%20ayuda%20con%20la%20${appConfig.companyName}.`, '_blank');
   };
 
   return (
@@ -23,7 +24,7 @@ const HelpFAQ: React.FC = () => {
       <TopAppBar showBack/>
 
       <div className="flex flex-col p-6 md:p-8 pb-20 max-w-2xl mx-auto w-full">
-        <SectionHeader title = "SOPORTE" subtitle="AYUDA"/>
+        <SectionHeader title = {appConfig.companyShortName} subtitle="SOPORTE - AYUDA"/>
         <div className="flex flex-col items-center p-8 bg-white dark:bg-neutral-900 rounded-none border border-neutral-200/60 dark:border-neutral-800/60 shadow-[0_1px_3px_rgba(0,0,0,0.02)] mb-12">
           <div className="size-12 bg-neutral-950 dark:bg-neutral-800 flex items-center justify-center text-white mb-4">
             <span className="material-symbols-outlined font-light text-xl">support_agent</span>
@@ -42,7 +43,7 @@ const HelpFAQ: React.FC = () => {
               WhatsApp
             </button>
             <button 
-              onClick={() => window.open('gabi@propiedades.com')} 
+              onClick={() => window.open(appConfig.email)} 
               className="flex-1 tracking-widest uppercase border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-200 bg-transparent text-[10px] font-medium py-3 px-4 hover:bg-neutral-50 dark:hover:bg-neutral-800/40 transition-all text-center rounded-none"
             >
               Email Directo
@@ -87,7 +88,7 @@ const HelpFAQ: React.FC = () => {
         <div className="flex flex-col items-center mt-16 gap-3">
           <div className="w-12 h-[1px] bg-neutral-200 dark:bg-neutral-800" />
           <p className="text-center text-[8px] text-neutral-400 uppercase tracking-[0.25em] font-light">
-            Versión de la App: 2.1.0 • © 2026 ORIENTE ESTUDIO.
+            Versión de la App: 2.1.0 • © 2026 {appConfig.companyName}.
           </p>
         </div>
       </div>

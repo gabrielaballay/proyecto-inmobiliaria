@@ -4,6 +4,7 @@ import TopAppBar from '../components/TopAppBar';
 import { getProperty } from '../services/property.service';
 import { Property } from '../types/property';
 import { getImageUrl } from '../utils/image';
+import { appConfig } from '../config/appConfig';
 
 const PropertyDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -59,8 +60,8 @@ const PropertyDetail: React.FC = () => {
   );
 
   const handleWhatsApp = () => {
-    const message = `Hola Oriente Propiedades! Estoy interesado en la propiedad "${property.title}" (${formatPrice(property.price)}) que vi en su web.`;
-    window.open(`https://wa.me/542664657284?text=${encodeURIComponent(message)}`, '_blank');
+    const message = `Hola ${appConfig.companyName}! Estoy interesado en la propiedad "${property.title}" (${formatPrice(property.price)}) que vi en su web.`;
+    window.open(`https://wa.me/${appConfig.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
@@ -224,7 +225,7 @@ const PropertyDetail: React.FC = () => {
             <span className="material-symbols-outlined text-lg">chat</span> Contactar por WhatsApp
           </button>
           <button 
-            onClick={() => window.open('tel:+542664657284')} 
+            onClick={() => window.open(`tel:+${appConfig.whatsapp}`)} 
             className="flex-1 h-14 bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 flex items-center justify-center gap-2 rounded-sm text-[11px] font-semibold uppercase tracking-[0.2em] hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all active:scale-95 shadow-sm border border-neutral-950 dark:border-white"
           >
             <span className="material-symbols-outlined text-lg">call</span> Llamar

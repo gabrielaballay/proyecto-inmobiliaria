@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import TopAppBar from '../components/TopAppBar';
 import SectionHeader from '../components/SectionHeader';
+import { appConfig } from '../config/appConfig';
 
 interface AccountSettingsProps {
   darkMode: boolean;
@@ -83,7 +84,7 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ darkMode, onToggleDar
 
       <TopAppBar showBack = {true} />
       <div className="flex flex-col gap-14 p-8 md:p-12 pb-24 max-w-xl mx-auto w-full">
-        <SectionHeader title = "GESTION" subtitle="CONFIGURACION"/>
+        <SectionHeader title = {appConfig.companyShortName} subtitle="CONFIGURACION"/>
         <div className="flex items-center gap-6 bg-white dark:bg-neutral-900 p-8 rounded-none border border-neutral-200/40 dark:border-neutral-900/50 shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
           <div className="size-16 rounded-none bg-neutral-950 dark:bg-neutral-850 flex items-center justify-center text-white shrink-0 border border-neutral-800/10 dark:border-white/5">
             {isAuthenticated ? (
@@ -162,7 +163,7 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ darkMode, onToggleDar
         <div className="flex flex-col items-center mt-8 gap-4">
           <div className="w-8 h-[1px] bg-neutral-200 dark:bg-neutral-900" />
           <p className="text-center text-[8px] text-neutral-400 uppercase tracking-[0.3em] font-light">
-            © 2026 ORIENTE STUDIO.
+            © 2026 {appConfig.companyName}.
           </p>
         </div>
       </div>

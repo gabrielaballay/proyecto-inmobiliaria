@@ -4,6 +4,7 @@ import { getProperties } from '../services/property.service';
 import { Property } from "../types";
 import { getImageUrl } from "../utils/image";
 import TopAppBar from '../components/TopAppBar';
+import { appConfig } from '../config/appConfig';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Home: React.FC = () => {
   }, []);
 
   const handleWhatsAppGeneral = () => {
-    window.open('https://wa.me/542664657284?text=Hola!%20Quisiera%20hacer%20una%20consulta%20general%20sobre%20propiedades%20en%20Oriente.', '_blank');
+    window.open(`https://wa.me/${appConfig.whatsapp}?text=Hola!%20Quisiera%20hacer%20una%20consulta%20general%20sobre%20${appConfig.companyName}.`, '_blank');
   };
 
   const navegarConFiltro = (tipo: 'VENTA' | 'ALQUILER') => {
@@ -68,7 +69,7 @@ const Home: React.FC = () => {
         <div className="relative w-full h-[45vh] overflow-hidden bg-neutral-900 rounded-sm">
           <img
             src={heroImage}
-            alt="Oriente Luxury Property"
+            alt="Luxury Property"
             className="absolute inset-0 size-full object-cover object-center transition-all duration-1000 ease-in-out brightness-[0.6]"
           />
 
@@ -179,7 +180,7 @@ const Home: React.FC = () => {
 
           <div className="flex justify-center items-center gap-10 mb-8 text-neutral-400">
             <a
-              href="https://facebook.com"
+              href={appConfig.social.facebook}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors duration-300 flex items-center justify-center"
@@ -190,7 +191,7 @@ const Home: React.FC = () => {
             </a>
 
             <a
-              href="https://wa.me/542664887159"
+              href={`https://wa.me/${appConfig.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors duration-300 flex items-center justify-center"
@@ -201,7 +202,7 @@ const Home: React.FC = () => {
             </a>
 
             <a
-              href="mailto:contacto@orientepropiedades.com"
+              href={`mailto:${appConfig.email}`}
               className="hover:text-white transition-colors duration-300 flex items-center justify-center"
             >
               <svg className="size-5 fill-current" viewBox="0 0 24 24">
@@ -211,7 +212,7 @@ const Home: React.FC = () => {
           </div>
 
           <p className="text-neutral-400 text-[10px] uppercase tracking-[0.2em] font-light mb-6">
-            Rawson 75, San Luis Capital
+            {appConfig.address}
           </p>
 
           {/* Enlaces Editoriales Inyectados */}
@@ -234,7 +235,7 @@ const Home: React.FC = () => {
           <div className="w-12 h-[1px] bg-neutral-900 mb-6" />
 
           <p className="text-[#333333] text-[8px] uppercase tracking-[0.25em] font-light">
-            © 2026 ORIENTE PROPIEDADES. Todos los derechos reservados.
+            © 2026 {appConfig.companyName}. Todos los derechos reservados.
           </p>
 
         </div>
