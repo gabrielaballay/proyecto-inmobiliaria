@@ -2,8 +2,8 @@ export const appConfig = {
     companyName: "My Studio",
     companyShortName: "MO",
 
-    phone: "+54 2664000000",
-    whatsapp: "542664000000",
+    phone: "+54 266400000",
+    whatsapp: "54266400000",
     email: "info@mystudio.com",
 
     currency: "ARS",
