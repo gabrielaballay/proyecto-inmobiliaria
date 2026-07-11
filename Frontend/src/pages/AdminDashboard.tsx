@@ -44,7 +44,7 @@ const AdminDashboard: React.FC = () => {
             const data = await getProperties();
             setProperties(data);
         } catch (error) {
-           showApiError(error);
+            showApiError(error);
             // toast.error("Error de sistema", {
             //     description: "No fue posible recuperar el catálogo de propiedades."
             // });
@@ -85,21 +85,23 @@ const AdminDashboard: React.FC = () => {
         <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
             <TopAppBar showBack />
             <div className="px-6 md:px-12 py-8 max-w-5xl mx-auto w-full flex-1">
-                <SectionHeader title = "GESTION" subtitle="PROPIEDADES"/>
+                <SectionHeader title="GESTION" subtitle="PROPIEDADES" />
                 <div className="flex justify-between items-center border-b border-neutral-200/50 pb-6 mb-6">
                     <h2 className="text-neutral-900 font-medium text-xs uppercase tracking-[0.3em]">
                         Tus Publicaciones
                         <span className="text-neutral-400 font-light ml-1">({properties.length})</span>
                     </h2>
-                    <button
-                        onClick={() => navigate("/admin/new")}
-                        className="h-11 bg-neutral-950 text-white px-5 rounded-sm text-[10px] font-semibold uppercase tracking-[0.3em] hover:bg-neutral-700 transition-all flex items-center gap-2 shadow-sm"
-                    >
-                        <span className="material-symbols-outlined text-base">
-                            add
-                        </span>
-                        Nuevo Anuncio
-                    </button>
+                    {user?.role == "ADMIN" && (
+                        <button
+                            onClick={() => navigate("/admin/new")}
+                            className="h-11 bg-neutral-950 text-white px-5 rounded-sm text-[10px] font-semibold uppercase tracking-[0.3em] hover:bg-neutral-700 transition-all flex items-center gap-2 shadow-sm"
+                        >
+                            <span className="material-symbols-outlined text-base">
+                                add
+                            </span>
+                            Nuevo Anuncio
+                        </button>
+                    )}
                 </div>
 
                 <div className="grid gap-4">
