@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
 import TopAppBar from "../components/TopAppBar";
 import {
     getProperties,
@@ -11,6 +10,7 @@ import { useAuth } from "../hooks/useAuth";
 import { getImageUrl } from "../utils/image";
 import { showConfirmDialog } from "../components/ConfirmDialog";
 import { showApiError } from "../utils/showApiError";
+import SectionHeader from "../components/SectionHeader";
 
 const AdminDashboard: React.FC = () => {
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ const AdminDashboard: React.FC = () => {
             return;
         }
 
-        if (user.role !== "ADMIN") {
+        if (user.role !== "ADMIN" && user.role !== "SELLER") {
             navigate("/", { replace: true });
             return;
         }
@@ -62,9 +62,7 @@ const AdminDashboard: React.FC = () => {
             successText: "Propiedad eliminada correctamente.",
             errorText: "No fue posible eliminar la propiedad.",
             onConfirm: async () => {
-
                 await deleteProperty(id);
-
                 setProperties(current =>
                     current.filter(p => p.id !== id)
                 );
@@ -86,15 +84,8 @@ const AdminDashboard: React.FC = () => {
     return (
         <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
             <TopAppBar showBack />
-
             <div className="px-6 md:px-12 py-8 max-w-5xl mx-auto w-full flex-1">
-                <div className="mb-10">
-                    <h1 className="text-neutral-900 dark:text-white text-xl font-light tracking-widest uppercase">
-                        GESTION <span className="font-semibold">/ PROPIEDADES</span>
-                    </h1>
-                    <div className="w-12 h-[1px] bg-neutral-950 dark:bg-white mt-4" />
-                </div>
-
+                <SectionHeader title = "GESTION" subtitle="PROPIEDADES"/>
                 <div className="flex justify-between items-center border-b border-neutral-200/50 pb-6 mb-6">
                     <h2 className="text-neutral-900 font-medium text-xs uppercase tracking-[0.3em]">
                         Tus Publicaciones

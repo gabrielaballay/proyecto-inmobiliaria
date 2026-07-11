@@ -18,6 +18,7 @@ import { useAuth } from "../hooks/useAuth";
 import { getImageUrl } from "../utils/image";
 import { showApiError } from "../utils/showApiError";
 import { showApiSucces } from "../utils/showApiSuccess";
+import SectionHeader from "../components/SectionHeader";
 
 const PropertyForm: React.FC = () => {
     const navigate = useNavigate();
@@ -61,7 +62,7 @@ const PropertyForm: React.FC = () => {
             return;
         }
 
-        if (user.role !== "ADMIN") {
+        if (user.role !== "ADMIN" && user.role !== "SELLER") {
             navigate("/", { replace: true });
             return;
         }
@@ -173,13 +174,7 @@ const PropertyForm: React.FC = () => {
             <TopAppBar showBack />
 
             <form onSubmit={handleSubmit} className="px-6 py-12 max-w-3xl mx-auto w-full space-y-12 animate-fade-in pb-32">
-                <div className="mb-10">
-                    <h1 className="text-neutral-900 dark:text-white text-xl font-light tracking-widest uppercase">
-                        PROPIEDAD <span className="font-semibold">/ {isEditing ? "EDITAR" : "NUEVA"}</span>
-                    </h1>
-                    <div className="w-12 h-[1px] bg-neutral-950 dark:bg-white mt-4" />
-                </div>
-
+                <SectionHeader title="PROPIEDAD" subtitle={isEditing ? "EDITAR" : "NUEVA"} />
                 {/* SECCIÓN 1: INFORMACIÓN GENERAL */}
                 <section className="space-y-6">
                     <div className="border-b border-neutral-200 pb-2">
@@ -198,7 +193,6 @@ const PropertyForm: React.FC = () => {
                                 className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                             />
                         </div>
-
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div className="space-y-1.5">
                                 <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Operación</label>
@@ -227,7 +221,7 @@ const PropertyForm: React.FC = () => {
                                 </select>
                             </div>
                         </div>
-
+                        {user?.role == "ADMIN" && (
                         <div className="space-y-1.5">
                             <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Valor de Comercialización</label>
                             <input
@@ -239,6 +233,7 @@ const PropertyForm: React.FC = () => {
                                 className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                             />
                         </div>
+                        )}
                     </div>
                 </section>
 

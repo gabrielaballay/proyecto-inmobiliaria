@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getProperties } from '../services/property.service';
 import { Property } from "../types";
 import { getImageUrl } from "../utils/image";
+import TopAppBar from '../components/TopAppBar';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -61,23 +62,7 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
 
-      <nav className="sticky top-0 z-50 flex items-center bg-[#fafafa]/80 backdrop-blur-xl px-8 py-6 justify-between border-b border-neutral-200/50">
-        <div className="flex items-center gap-3">
-          <div className="size-3 bg-neutral-900 rounded-none rotate-45" />
-          <h2 className="text-neutral-900 text-xs font-semibold tracking-[0.4em] uppercase">
-            ORIENTE <span className="font-light text-neutral-400">/ STUDIO</span>
-          </h2>
-        </div>
-
-        <div className="flex gap-6 items-center">
-          <button
-            onClick={() => navigate('/settings')}
-            className="flex items-center justify-center text-neutral-900 hover:text-neutral-400 transition-colors"
-          >
-            <span className="material-symbols-outlined font-light text-xl">account_circle</span>
-          </button>
-        </div>
-      </nav>
+      <TopAppBar showBack={false} onRightClick={() => navigate('/settings')} rightIcon='account_circle'/>
 
       <div className="px-6 md:px-12 mt-4">
         <div className="relative w-full h-[45vh] overflow-hidden bg-neutral-900 rounded-sm">

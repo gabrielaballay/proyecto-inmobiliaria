@@ -16,7 +16,7 @@ const LanguageSettings: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark">
-      <TopAppBar title="Idioma de App" showBack />
+      <TopAppBar  showBack />
       
       <div className="p-4 space-y-4">
         <header className="px-2">

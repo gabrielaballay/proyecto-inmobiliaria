@@ -43,18 +43,11 @@ const Login: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
-            
-            <TopAppBar
-                title="INICIAR SESIÓN"
-                showBack
-            />
+
+            <TopAppBar showBack />
 
             <div className="px-6 flex flex-col items-center justify-center flex-1 max-w-md mx-auto w-full animate-fade-in pb-24">
-                
-                {}
                 <div className="w-full bg-white border border-neutral-200/80 p-8 sm:p-10 rounded-xl shadow-xs">
-                    
-                    {}
                     <div className="text-center mb-8">
                         <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-950 text-white mb-4 shadow-sm">
                             <span className="material-symbols-outlined text-xl font-light">lock_open</span>
@@ -68,8 +61,6 @@ const Login: React.FC = () => {
                     </div>
 
                     <form className="w-full space-y-5" onSubmit={handleLogin}>
-                        
-                        {}
                         <div className="space-y-2">
                             <label className="text-xs font-semibold text-neutral-700 tracking-wide block ml-0.5">
                                 Correo Electrónico
@@ -89,8 +80,6 @@ const Login: React.FC = () => {
                                 />
                             </div>
                         </div>
-
-                        {}
                         <div className="space-y-2">
                             <label className="text-xs font-semibold text-neutral-700 tracking-wide block ml-0.5">
                                 Contraseña
@@ -110,15 +99,11 @@ const Login: React.FC = () => {
                                 />
                             </div>
                         </div>
-
-                        {}
                         {error && (
                             <div className="p-3 bg-neutral-50 border border-neutral-200 text-neutral-600 text-xs text-center rounded-xl font-medium">
                                 {error}
                             </div>
                         )}
-
-                        {}
                         <button
                             type="submit"
                             disabled={loading}
@@ -135,7 +120,6 @@ const Login: React.FC = () => {
                     {/* Footer sutil */}
                     <div className="mt-6 pt-6 border-t border-neutral-100 text-center">
                         <p className="text-[10px] text-neutral-400 tracking-widest uppercase font-medium">
-                            
                         </p>
                     </div>
                 </div>

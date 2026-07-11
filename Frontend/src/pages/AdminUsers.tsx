@@ -11,6 +11,7 @@ import {
 import { User } from "../types/user";
 import { showConfirmDialog } from "../components/ConfirmDialog";
 import { showApiError } from "../utils/showApiError";
+import SectionHeader from "../components/SectionHeader";
 
 const roleLabels: Record<string, string> = {
     ADMIN: "Administrador",
@@ -134,13 +135,7 @@ const AdminUsers: React.FC = () => {
             <TopAppBar showBack />
 
             <div className="px-6 md:px-12 py-8 max-w-5xl mx-auto w-full flex-1">
-                <div className="mb-10">
-                    <h1 className="text-neutral-900 dark:text-white text-xl font-light tracking-widest uppercase">
-                        GESTION <span className="font-semibold">/ VENDEDORES</span>
-                    </h1>
-                    <div className="w-12 h-[1px] bg-neutral-950 dark:bg-white mt-4" />
-                </div>
-
+                <SectionHeader title = "GESTION" subtitle="VENDEDORES"/>
                 <div className="flex justify-between items-center border-b border-neutral-200/50 pb-6 mb-6">
                     <h2 className="text-neutral-900 font-medium text-xs uppercase tracking-[0.3em]">
                         Usuarios

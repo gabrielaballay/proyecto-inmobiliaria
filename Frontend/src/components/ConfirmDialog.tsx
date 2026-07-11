@@ -47,7 +47,7 @@ export function showConfirmDialog({
     };
 
     toast.custom((t) => (
-        <div className="w-[360px] rounded-2xl border border-neutral-200 bg-white shadow-2xl p-5 flex flex-col gap-2 pointer-events-auto">
+        <div className="w-[360px] rounded-2xl border border-neutral-200 bg-white shadow-2xl p-5 flex flex-col gap-2 pointer-events-auto" >
             <h3 className="text-sm font-black uppercase tracking-wider">
                 {title}
             </h3>
@@ -89,6 +89,15 @@ export function showConfirmDialog({
             </div>
         </div>
     ), {
-        duration: Infinity
+        position: "top-center",        
+        duration: Infinity,
+        className: "!rounded-2xl",
+        style: {
+            borderRadius: "16px",
+            padding: 0,
+            border: "none",
+            background: "transparent",
+            boxShadow: "none"
+        }
     });
 }
