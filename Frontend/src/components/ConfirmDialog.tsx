@@ -47,7 +47,7 @@ export function showConfirmDialog({
     };
 
     toast.custom((t) => (
-        <div className="w-[360px] rounded-2xl border border-neutral-200 bg-white shadow-2xl p-5 flex flex-col gap-2 pointer-events-auto" >
+        <div className="w-[360px] rounded-2xl border border-neutral-200 bg-surface shadow-2xl p-5 flex flex-col gap-2 pointer-events-auto" >
             <h3 className="text-sm font-black uppercase tracking-wider">
                 {title}
             </h3>
@@ -82,7 +82,7 @@ export function showConfirmDialog({
                             });
                         }
                     }}
-                    className="px-4 h-9 rounded-xl bg-neutral-950 text-white text-xs font-bold uppercase"
+                    className="px-4 h-9 rounded-xl btn-primary-theme text-white text-xs font-bold uppercase"
                 >
                     {confirmText}
                 </button>

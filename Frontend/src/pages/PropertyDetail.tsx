@@ -51,7 +51,7 @@ const PropertyDetail: React.FC = () => {
     }).format(price);
 
   if (!property) return (
-    <div className="flex flex-col items-center justify-center h-screen bg-[#fafafa] dark:bg-background-dark text-neutral-900 dark:text-neutral-100 tracking-[0.3em] font-sans antialiased uppercase text-xs">
+    <div className="flex flex-col items-center justify-center h-screen bg-surface dark:bg-background-dark text-app dark:text-neutral-100 tracking-[0.3em] font-sans antialiased uppercase text-xs">
       <span className="material-symbols-outlined text-3xl text-neutral-400 animate-spin mb-2">
         autorenew
       </span>
@@ -65,7 +65,7 @@ const PropertyDetail: React.FC = () => {
   };
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col bg-[#fafafa] dark:bg-background-dark text-neutral-900 dark:text-neutral-100 tracking-wider font-sans antialiased pb-36">
+    <div className="relative flex min-h-screen w-full flex-col bg-surface-secondary dark:bg-background-dark text-app dark:text-neutral-100 tracking-wider font-sans antialiased pb-36">
       <TopAppBar showBack />
 
       {/* Hero Carousel */}
@@ -91,7 +91,7 @@ const PropertyDetail: React.FC = () => {
         </div>
 
         {/* Contador flotante (Estilo minimalista) */}
-        <div className="absolute top-6 right-6 bg-neutral-950/80 backdrop-blur-md text-white text-[10px] font-semibold uppercase tracking-[0.2em] px-3 py-1.5 rounded-sm z-10 border border-white/10 shadow-sm">
+        <div className="absolute top-6 right-6 btn-primary-theme/80 backdrop-blur-md text-white text-[10px] font-semibold uppercase tracking-[0.2em] px-3 py-1.5 rounded-sm z-10 border border-white/10 shadow-sm">
           {activeImage + 1} / {property.images.length}
         </div>
 
@@ -100,7 +100,7 @@ const PropertyDetail: React.FC = () => {
 
         {/* Textos sobre el carrusel */}
         <div className="absolute bottom-6 left-6 right-6 pointer-events-none z-10 max-w-5xl mx-auto w-full">
-          <span className="bg-white/95 text-neutral-900 text-[9px] font-semibold px-2.5 py-1 rounded-sm uppercase tracking-[0.2em] mb-3 inline-block shadow-sm">
+          <span className="bg-surface/95 text-app text-[9px] font-semibold px-2.5 py-1 rounded-sm uppercase tracking-[0.2em] mb-3 inline-block shadow-sm">
             {property.operation} • {property.type}
           </span>
           <h1 className="text-white text-2xl md:text-4xl font-medium uppercase tracking-wide leading-tight drop-shadow-sm max-w-3xl">
@@ -115,10 +115,10 @@ const PropertyDetail: React.FC = () => {
 
       {/* --- LIGHTBOX MODAL --- */}
       {isLightboxOpen && (
-        <div className="fixed inset-0 z-[100] bg-neutral-950/95 backdrop-blur-sm flex flex-col items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] btn-primary-theme/95 backdrop-blur-sm flex flex-col items-center justify-center p-4">
           <button
             onClick={() => setIsLightboxOpen(false)}
-            className="absolute top-6 right-6 text-white bg-white/5 hover:bg-white/10 border border-white/10 p-3 rounded-sm transition-all z-[110]"
+            className="absolute top-6 right-6 text-white bg-surface/5 hover:bg-surface/10 border border-white/10 p-3 rounded-sm transition-all z-[110]"
           >
             <span className="material-symbols-outlined text-2xl">close</span>
           </button>
@@ -156,43 +156,43 @@ const PropertyDetail: React.FC = () => {
         {/* Sección de Precio */}
         <div className="border-b border-neutral-200/50 dark:border-neutral-800/50 pb-4">
           <p className="text-neutral-400 dark:text-neutral-500 text-[9px] font-semibold uppercase tracking-[0.3em] mb-1">Valor de la propiedad</p>
-          <h2 className="text-neutral-900 dark:text-white text-3xl font-semibold tracking-wide">{formatPrice(property.price)}</h2>
+          <h2 className="text-app dark:text-white text-3xl font-semibold tracking-wide">{formatPrice(property.price)}</h2>
         </div>
 
         {/* Specs Grid (Estilo PropertyList adaptado a Dark Mode) */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="flex items-center gap-3 p-4 bg-white dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 rounded-sm shadow-sm">
+          <div className="flex items-center gap-3 p-4 bg-surface dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 rounded-sm shadow-sm">
             <span className="material-symbols-outlined text-neutral-400 dark:text-neutral-500 text-xl">bed</span>
             <span className="text-xs font-medium text-neutral-800 dark:text-neutral-200 uppercase tracking-wider">{property.bedrooms} Dormitorios</span>
           </div>
-          <div className="flex items-center gap-3 p-4 bg-white dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 rounded-sm shadow-sm">
+          <div className="flex items-center gap-3 p-4 bg-surface dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 rounded-sm shadow-sm">
             <span className="material-symbols-outlined text-neutral-400 dark:text-neutral-500 text-xl">bathtub</span>
             <span className="text-xs font-medium text-neutral-800 dark:text-neutral-200 uppercase tracking-wider">{property.bathrooms} Baños</span>
           </div>
-          <div className="flex items-center gap-3 p-4 bg-white dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 rounded-sm shadow-sm">
+          <div className="flex items-center gap-3 p-4 bg-surface dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 rounded-sm shadow-sm">
             <span className="material-symbols-outlined text-neutral-400 dark:text-neutral-500 text-xl">directions_car</span>
             <span className="text-xs font-medium text-neutral-800 dark:text-neutral-200 uppercase tracking-wider">{property.garages} Cochera</span>
           </div>          
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">          
-          <div className="flex items-center gap-3 p-4 bg-white dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 rounded-sm shadow-sm">
+          <div className="flex items-center gap-3 p-4 bg-surface dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 rounded-sm shadow-sm">
             <span className="material-symbols-outlined text-neutral-400 dark:text-neutral-500 text-xl">square_foot</span>
             <span className="text-xs font-medium text-neutral-800 dark:text-neutral-200 uppercase tracking-wider">
-              {property.coveredSurface ?? "-"} m² Cub.
+              {property.coveredsurface ?? "-"} m² Cub.
             </span>
           </div>
-          <div className="flex items-center gap-3 p-4 bg-white dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 rounded-sm shadow-sm">
+          <div className="flex items-center gap-3 p-4 bg-surface dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 rounded-sm shadow-sm">
             <span className="material-symbols-outlined text-neutral-400 dark:text-neutral-500 text-xl">square</span>
             <span className="text-xs font-medium text-neutral-800 dark:text-neutral-200 uppercase tracking-wider">
-              {property.totalSurface ?? "-"} m² Totales.
+              {property.totalsurface ?? "-"} m² Totales.
             </span>
           </div>
         </div>
 
         {/* Descripción */}
         <section className="mt-2">
-          <h3 className="text-neutral-900 dark:text-white font-medium text-xs uppercase tracking-[0.3em] mb-4">Descripción</h3>
+          <h3 className="text-app dark:text-white font-medium text-xs uppercase tracking-[0.3em] mb-4">Descripción</h3>
           <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed font-light whitespace-pre-line tracking-wide">
             {property.description}
           </p>
@@ -200,12 +200,12 @@ const PropertyDetail: React.FC = () => {
 
         {/* Amenidades */}
         <section className="mt-2">
-          <h3 className="text-neutral-900 dark:text-white font-medium text-xs uppercase tracking-[0.3em] mb-4">Amenidades</h3>
+          <h3 className="text-app dark:text-white font-medium text-xs uppercase tracking-[0.3em] mb-4">Amenidades</h3>
           <div className="flex flex-wrap gap-2.5">
             {(property.features ?? []).map((f, i) => (
               <span 
                 key={i} 
-                className="bg-white dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 px-4 py-2.5 rounded-sm text-[10px] font-medium uppercase tracking-[0.15em] text-neutral-600 dark:text-neutral-300 flex items-center gap-2 shadow-sm"
+                className="bg-surface dark:bg-navy border border-neutral-200/60 dark:border-neutral-800 px-4 py-2.5 rounded-sm text-[10px] font-medium uppercase tracking-[0.15em] text-neutral-600 dark:text-neutral-300 flex items-center gap-2 shadow-sm"
               >
                 <span className="material-symbols-outlined text-sm text-neutral-400 dark:text-neutral-500">done</span> 
                 {f}
@@ -216,7 +216,7 @@ const PropertyDetail: React.FC = () => {
       </div>
 
       {/* Barra Fija Inferior de Contacto (Respetando Dark Mode) */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/95 dark:bg-navy/95 backdrop-blur-xl border-t border-neutral-200/60 dark:border-neutral-800/60 z-50 shadow-md">
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-surface/95 dark:bg-navy/95 backdrop-blur-xl border-t border-neutral-200/60 dark:border-neutral-800/60 z-50 shadow-md">
         <div className="max-w-5xl mx-auto flex gap-3 px-2 md:px-8">
           <button 
             onClick={handleWhatsApp} 
@@ -226,7 +226,7 @@ const PropertyDetail: React.FC = () => {
           </button>
           <button 
             onClick={() => window.open(`tel:+${appConfig.whatsapp}`)} 
-            className="flex-1 h-14 bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 flex items-center justify-center gap-2 rounded-sm text-[11px] font-semibold uppercase tracking-[0.2em] hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all active:scale-95 shadow-sm border border-neutral-950 dark:border-white"
+            className="flex-1 h-14 btn-primary-theme dark:bg-surface text-white dark:text-neutral-950 flex items-center justify-center gap-2 rounded-sm text-[11px] font-semibold uppercase tracking-[0.2em] hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all active:scale-95 shadow-sm border border-neutral-950 dark:border-white"
           >
             <span className="material-symbols-outlined text-lg">call</span> Llamar
           </button>

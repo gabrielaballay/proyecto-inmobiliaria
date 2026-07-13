@@ -122,7 +122,7 @@ const AdminUsers: React.FC = () => {
 
     if (loading) {
         return (
-            <div className="flex flex-col items-center justify-center h-screen bg-[#fafafa] text-neutral-900 tracking-[0.3em] font-sans antialiased uppercase text-xs">
+            <div className="flex flex-col items-center justify-center h-screen bg-surface text-app tracking-[0.3em] font-sans antialiased uppercase text-xs">
                 <span className="material-symbols-outlined text-3xl text-neutral-400 animate-spin mb-2">
                     autorenew
                 </span>
@@ -132,21 +132,21 @@ const AdminUsers: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
+        <div className="flex flex-col min-h-screen bg-surface-secondary text-app tracking-wider font-sans antialiased">
             <TopAppBar showBack />
 
             <div className="px-6 md:px-12 py-8 max-w-5xl mx-auto w-full flex-1">
                 <SectionHeader title = {appConfig.companyShortName}subtitle="VENDEDORES"/>
                 <div className="flex justify-between items-center border-b border-neutral-200/50 pb-6 mb-6">
-                    <h2 className="text-neutral-900 font-medium text-xs uppercase tracking-[0.3em]">
+                    <h2 className="text-app font-medium text-xs uppercase tracking-[0.3em]">
                         Usuarios
                         <span className="text-neutral-400 font-light ml-1">({users.length})</span>
                     </h2>
                     <button
                         onClick={() => setShowForm(current => !current)}
                         className={`h-11 px-5 rounded-sm text-[10px] font-semibold uppercase tracking-[0.3em] transition-all flex items-center gap-2 shadow-sm border ${showForm
-                            ? 'bg-white text-neutral-500 border-neutral-200/60 hover:border-neutral-900 hover:text-neutral-900'
-                            : 'bg-neutral-950 text-white border-neutral-950 hover:bg-neutral-700'
+                            ? 'bg-surface text-neutral-500 border-neutral-200/60 hover:border-neutral-900 hover:text-app'
+                            : 'btn-primary-theme text-white border-neutral-950 hover:bg-neutral-700'
                             }`}
                     >
                         <span className="material-symbols-outlined text-base">
@@ -159,7 +159,7 @@ const AdminUsers: React.FC = () => {
                 {showForm && (
                     <form
                         onSubmit={handleCreate}
-                        className="bg-white border border-neutral-200/60 rounded-sm p-6 space-y-5 animate-fade-in mb-6"
+                        className="bg-surface border border-neutral-200/60 rounded-sm p-6 space-y-5 animate-fade-in mb-6"
                     >
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div className="space-y-1.5">
@@ -171,7 +171,7 @@ const AdminUsers: React.FC = () => {
                                     onChange={handleChange}
                                     required
                                     minLength={2}
-                                    className="w-full h-12 bg-white border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide focus:outline-none focus:border-neutral-900 transition-all"
+                                    className="w-full h-12 bg-surface border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide focus:outline-none focus:border-neutral-900 transition-all"
                                 />
                             </div>
                             <div className="space-y-1.5">
@@ -183,7 +183,7 @@ const AdminUsers: React.FC = () => {
                                     onChange={handleChange}
                                     required
                                     minLength={2}
-                                    className="w-full h-12 bg-white border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide focus:outline-none focus:border-neutral-900 transition-all"
+                                    className="w-full h-12 bg-surface border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide focus:outline-none focus:border-neutral-900 transition-all"
                                 />
                             </div>
                         </div>
@@ -194,7 +194,7 @@ const AdminUsers: React.FC = () => {
                                 <select
                                     value={formData.role}
                                     onChange={e => setFormData({ ...formData, role: e.target.value })}
-                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 >
                                     <option value="SELLER">Vendedor</option>
                                     <option value="ADMIN">Administrador</option>
@@ -210,7 +210,7 @@ const AdminUsers: React.FC = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full h-12 bg-white border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide focus:outline-none focus:border-neutral-900 transition-all"
+                                className="w-full h-12 bg-surface border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide focus:outline-none focus:border-neutral-900 transition-all"
                             />
                         </div>
                         <div className="space-y-1.5">
@@ -223,14 +223,14 @@ const AdminUsers: React.FC = () => {
                                 required
                                 minLength={8}
                                 placeholder="Mínimo 8 caracteres"
-                                className="w-full h-12 bg-white border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide placeholder-neutral-300 focus:outline-none focus:border-neutral-900 transition-all"
+                                className="w-full h-12 bg-surface border border-neutral-200/60 rounded-sm px-4 text-xs font-medium tracking-wide placeholder-neutral-300 focus:outline-none focus:border-neutral-900 transition-all"
                             />
                         </div>
 
                         <button
                             type="submit"
                             disabled={saving}
-                            className="w-full h-12 rounded-sm bg-neutral-950 text-white text-[10px] font-semibold uppercase tracking-[0.3em] hover:bg-neutral-700 transition-all flex items-center justify-center disabled:opacity-50"
+                            className="w-full h-12 rounded-sm btn-primary-theme text-white text-[10px] font-semibold uppercase tracking-[0.3em] hover:bg-neutral-700 transition-all flex items-center justify-center disabled:opacity-50"
                         >
                             {saving ? (
                                 <span className="material-symbols-outlined text-xl animate-spin">
@@ -255,14 +255,14 @@ const AdminUsers: React.FC = () => {
                         users.map(u => (
                             <div
                                 key={u.id}
-                                className="bg-white border border-neutral-200/60 rounded-sm flex items-center gap-5 p-4 hover:border-neutral-900 transition-all duration-300"
+                                className="bg-surface border border-neutral-200/60 rounded-sm flex items-center gap-5 p-4 hover:border-neutral-900 transition-all duration-300"
                             >
                                 <div className="size-12 rounded-sm bg-neutral-50 border border-neutral-200/40 flex items-center justify-center text-neutral-400 shrink-0">
                                     <span className="material-symbols-outlined text-xl">person</span>
                                 </div>
 
                                 <div className="flex-1 min-w-0">
-                                    <h4 className="text-neutral-900 font-medium text-sm uppercase tracking-wide truncate">
+                                    <h4 className="text-app font-medium text-sm uppercase tracking-wide truncate">
                                         {u.firstName} {u.lastName}
                                     </h4>
                                     <p className="text-neutral-400 text-xs font-light lowercase tracking-normal mt-0.5 truncate">
@@ -300,8 +300,8 @@ const AdminUsers: React.FC = () => {
                                             onClick={() => handleToggleStatus(u.id)}
                                             disabled={togglingId === u.id}
                                             className={`h-9 px-4 rounded-sm text-[9px] font-semibold uppercase tracking-[0.2em] border transition-colors disabled:opacity-50 ${u.active
-                                                ? "bg-white text-neutral-400 border-neutral-200/60 hover:text-red-500 hover:border-red-500"
-                                                : "bg-neutral-950 text-white border-neutral-950 hover:bg-neutral-700"
+                                                ? "bg-surface text-neutral-400 border-neutral-200/60 hover:text-red-500 hover:border-red-500"
+                                                : "btn-primary-theme text-white border-neutral-950 hover:bg-neutral-700"
                                                 }`}
                                         >
                                             {togglingId === u.id

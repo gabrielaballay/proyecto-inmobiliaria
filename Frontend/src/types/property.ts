@@ -37,8 +37,8 @@ export interface Property {
     bedrooms: number;
     bathrooms: number;
     garages: number;
-    coveredSurface?: number;
-    totalSurface?: number;
+    coveredsurface?: number;
+    totalsurface?: number;
     featured: boolean;
     published: boolean;
     features: string[];

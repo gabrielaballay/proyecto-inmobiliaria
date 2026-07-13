@@ -73,7 +73,7 @@ const AdminDashboard: React.FC = () => {
 
     if (loading) {
         return (
-            <div className="flex flex-col items-center justify-center h-screen bg-[#fafafa] text-neutral-900 tracking-[0.3em] font-sans antialiased uppercase text-xs">
+            <div className="flex flex-col items-center justify-center h-screen bg-surface text-app tracking-[0.3em] font-sans antialiased uppercase text-xs">
                 <span className="material-symbols-outlined text-3xl text-neutral-400 animate-spin mb-2">
                     autorenew
                 </span>
@@ -83,19 +83,19 @@ const AdminDashboard: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
+        <div className="flex flex-col min-h-screen bg-surface-secondary text-app tracking-wider font-sans antialiased">
             <TopAppBar showBack />
             <div className="px-6 md:px-12 py-8 max-w-5xl mx-auto w-full flex-1">
                 <SectionHeader title={appConfig.companyShortName} subtitle="PROPIEDADES" />
                 <div className="flex justify-between items-center border-b border-neutral-200/50 pb-6 mb-6">
-                    <h2 className="text-neutral-900 font-medium text-xs uppercase tracking-[0.3em]">
+                    <h2 className="text-app font-medium text-xs uppercase tracking-[0.3em]">
                         Tus Publicaciones
                         <span className="text-neutral-400 font-light ml-1">({properties.length})</span>
                     </h2>
                     {user?.role == "ADMIN" && (
                         <button
                             onClick={() => navigate("/admin/new")}
-                            className="h-11 bg-neutral-950 text-white px-5 rounded-sm text-[10px] font-semibold uppercase tracking-[0.3em] hover:bg-neutral-700 transition-all flex items-center gap-2 shadow-sm"
+                            className="h-11 btn-primary-theme text-white px-5 rounded-sm text-[10px] font-semibold uppercase tracking-[0.3em] hover:bg-neutral-700 transition-all flex items-center gap-2 shadow-sm"
                         >
                             <span className="material-symbols-outlined text-base">
                                 add
@@ -119,9 +119,9 @@ const AdminDashboard: React.FC = () => {
                         properties.map(property => (
                             <div
                                 key={property.id}
-                                className="bg-white border border-neutral-200/60 rounded-sm flex items-center gap-5 p-4 hover:border-neutral-900 transition-all duration-300"
+                                className="bg-surface border border-neutral-200/60 rounded-sm flex items-center gap-5 p-4 hover:border-neutral-900 transition-all duration-300"
                             >
-                                <div className="size-20 bg-neutral-900 rounded-sm overflow-hidden shrink-0 relative">
+                                <div className="size-20 btn-primary-theme rounded-sm overflow-hidden shrink-0 relative">
                                     <img
                                         src={
                                             getImageUrl(
@@ -136,10 +136,10 @@ const AdminDashboard: React.FC = () => {
 
                                 <div className="flex-1 min-w-0">
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                                        <h4 className="text-neutral-900 font-medium text-sm uppercase tracking-wide truncate">
+                                        <h4 className="text-app font-medium text-sm uppercase tracking-wide truncate">
                                             {property.title}
                                         </h4>
-                                        <span className="text-neutral-900 font-semibold text-sm whitespace-nowrap">
+                                        <span className="text-app font-semibold text-sm whitespace-nowrap">
                                             {formatPrice(property.price)}
                                         </span>
                                     </div>
@@ -162,7 +162,7 @@ const AdminDashboard: React.FC = () => {
                                 <div className="flex gap-2 border-l border-neutral-100 pl-4 h-12 items-center">
                                     <button
                                         onClick={() => navigate(`/admin/edit/${property.id}`)}
-                                        className="size-9 rounded-sm border border-neutral-200/60 text-neutral-400 flex items-center justify-center hover:border-neutral-900 hover:text-neutral-900 transition-colors"
+                                        className="size-9 rounded-sm border border-neutral-200/60 text-neutral-400 flex items-center justify-center hover:border-neutral-900 hover:text-app transition-colors"
                                         title="Editar"
                                     >
                                         <span className="material-symbols-outlined text-lg">

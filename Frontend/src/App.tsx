@@ -15,8 +15,10 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminUsers from './pages/AdminUsers';
 import PropertyForm from './pages/PropertyForm';
 import ProtectedRoute from './components/ProtectedRoute';
-import { Toaster } from 'sonner';
 import AppToaster from './components/AppToaster';
+import { branding } from "./config/branding";
+import { applyTheme } from "./theme/applyTheme";
+import ThemeProvider from "./theme/ThemeProvider";
 
 const App: React.FC = () => {
     const [darkMode, setDarkMode] = useState(localStorage.getItem('theme') === 'dark');
@@ -33,97 +35,110 @@ const App: React.FC = () => {
 
     const toggleDarkMode = () => setDarkMode(!darkMode);
 
-    return (
-        <Router>
+    useEffect(() => {
+        const dark =
+            document.documentElement.classList.contains("dark");
 
-            <div className="min-h-screen bg-background-light dark:bg-background-dark selection:bg-primary selection:text-white transition-colors duration-300">
-                <div className="max-w-3xl mx-auto">
-                    <AppToaster/>
-                </div>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/list" element={<PropertyList />} />
-                    <Route path="/property/:id" element={<PropertyDetail />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/settings/help" element={<HelpFAQ />} />
-                    <Route path="/settings/terms" element={<TermsPrivacy />} />
-                    <Route path="/profile"
-                        element={
-                            <ProtectedRoute>
-                                <Profile />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route path="/profile/edit"
-                        element={
-                            <ProtectedRoute>
-                                <EditProfile />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route path="/settings"
-                        element={
-                            <ProtectedRoute>
-                                <AccountSettings
-                                    darkMode={darkMode}
-                                    onToggleDarkMode={toggleDarkMode}
+        applyTheme(
+            dark
+                ? branding.theme.dark
+                : branding.theme.light
+        );
+    }, []);
+
+    return (
+        <ThemeProvider>
+            <Router>
+
+                <div className="min-h-screen bg-background-light dark:bg-background-dark selection:bg-primary selection:text-white transition-colors duration-300">
+                    <div className="max-w-3xl mx-auto">
+                        <AppToaster />
+                    </div>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/list" element={<PropertyList />} />
+                        <Route path="/property/:id" element={<PropertyDetail />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/settings/help" element={<HelpFAQ />} />
+                        <Route path="/settings/terms" element={<TermsPrivacy />} />
+                        <Route path="/profile"
+                            element={
+                                <ProtectedRoute>
+                                    <Profile />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="/profile/edit"
+                            element={
+                                <ProtectedRoute>
+                                    <EditProfile />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="/settings"
+                            element={
+                                <ProtectedRoute>
+                                    <AccountSettings
+                                        darkMode={darkMode}
+                                        onToggleDarkMode={toggleDarkMode}
+                                    />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="/settings/security"
+                            element={
+                                <ProtectedRoute>
+                                    <SecuritySettings />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="/settings/language"
+                            element={
+                                <ProtectedRoute>
+                                    <LanguageSettings />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="/dashboard"
+                            element={
+                                <ProtectedRoute>
+                                    <AdminDashboard />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="/admin/users"
+                            element={
+                                <ProtectedRoute roles={["ADMIN"]}>
+                                    <AdminUsers />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="/admin/new"
+                            element={
+                                <ProtectedRoute>
+                                    <PropertyForm />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="/admin/edit/:id"
+                            element={
+                                <ProtectedRoute>
+                                    <PropertyForm />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="*"
+                            element={
+                                <Navigate
+                                    to="/"
+                                    replace
                                 />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route path="/settings/security"
-                        element={
-                            <ProtectedRoute>
-                                <SecuritySettings />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route path="/settings/language"
-                        element={
-                            <ProtectedRoute>
-                                <LanguageSettings />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route path="/dashboard"
-                        element={
-                            <ProtectedRoute>
-                                <AdminDashboard />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route path="/admin/users"
-                        element={
-                            <ProtectedRoute roles={["ADMIN"]}>
-                                <AdminUsers />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route path="/admin/new"
-                        element={
-                            <ProtectedRoute>
-                                <PropertyForm />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route path="/admin/edit/:id"
-                        element={
-                            <ProtectedRoute>
-                                <PropertyForm />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route path="*"
-                        element={
-                            <Navigate
-                                to="/"
-                                replace
-                            />
-                        }
-                    />
-                </Routes>
-            </div>
-        </Router>
+                            }
+                        />
+                    </Routes>
+                </div>
+            </Router>
+        </ThemeProvider>
     );
 };
 

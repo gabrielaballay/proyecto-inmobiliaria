@@ -1,3 +1,5 @@
+import logo from "../assets/logo.png";
+
 export const appConfig = {
     companyName: "My Studio",
     companyShortName: "MO",
@@ -14,5 +16,6 @@ export const appConfig = {
     social: {
         instagram: "https://instagram.com/mystudio",
         facebook: "https://facebook.com/mystudio"
-    }
+    },
+    logo
 } as const;

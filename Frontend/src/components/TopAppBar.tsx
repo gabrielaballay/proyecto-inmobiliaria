@@ -33,31 +33,30 @@ const TopAppBar: React.FC<TopAppBarProps> = ({
     <nav
       className={`sticky top-0 z-50 flex items-center justify-between px-8 py-6 backdrop-blur-xl ${transparent
           ? "bg-transparent border-none"
-          : "bg-[#fafafa]/80 dark:bg-neutral-950/80 border-b border-neutral-200/50 dark:border-neutral-800/50"
+          : "bg-surface/80 dark:btn-primary-theme/80 border-b border-neutral-200/50 dark:border-neutral-800/50"
         }`}
     >
       {/* IZQUIERDA */}
-      <div className="flex items-center gap-4">
-        {showHome && (
+      <div className="flex items-center gap-4">        
           <div
             className="flex items-center gap-3 cursor-pointer"
             onClick={() => navigate("/")}
           >
-            <div className="size-3 bg-neutral-900 dark:bg-white rotate-45" />
+            <div className="size-3 btn-primary-theme dark:bg-surface rotate-45" />
 
-            <h2 className="text-neutral-900 dark:text-white text-xs font-semibold tracking-[0.4em] uppercase">
+            <h2 className="text-app dark:text-white text-xs font-semibold tracking-[0.4em] uppercase">
               {appConfig.companyShortName}{" "}
               <span className="font-light text-neutral-400 dark:text-neutral-500">
                 / STUDIO
               </span>
             </h2>
-          </div>
-        )}
+          </div>        
       </div>
+      
       {showBack && (
         <button
           onClick={handleBack}
-          className="flex items-center gap-1.5 text-neutral-900 dark:text-white hover:text-neutral-500 text-[10px] font-medium tracking-widest uppercase transition-colors"
+          className="flex items-center gap-1.5 text-app dark:text-white hover:text-neutral-500 text-[10px] font-medium tracking-widest uppercase transition-colors"
         >
           <span className="material-symbols-outlined text-lg">
             arrow_back

@@ -47,8 +47,8 @@ const PropertyForm: React.FC = () => {
         bedrooms: 0,
         bathrooms: 0,
         garages: 0,
-        coveredSurface: 0,
-        totalSurface: 0,
+        coveredsurface: 0,
+        totalsurface: 0,
         featured: false,
         published: true,
         features: [],
@@ -171,7 +171,7 @@ const PropertyForm: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
+        <div className="flex flex-col min-h-screen bg-surface-secondary text-app tracking-wider font-sans antialiased">
             <TopAppBar showBack />
 
             <form onSubmit={handleSubmit} className="px-6 py-12 max-w-3xl mx-auto w-full space-y-12 animate-fade-in pb-32">
@@ -182,7 +182,7 @@ const PropertyForm: React.FC = () => {
                         <h3 className="text-[10px] font-semibold text-neutral-400 uppercase tracking-[0.3em]">01 / INFORMACIÓN BÁSICA</h3>
                     </div>
 
-                    <div className="space-y-5 bg-white border border-neutral-200/60 p-6 rounded-sm shadow-2xs">
+                    <div className="space-y-5 bg-surface border border-neutral-200/60 p-6 rounded-sm shadow-2xs">
                         <div className="space-y-1.5">
                             <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Título del Anuncio</label>
                             <input
@@ -191,7 +191,7 @@ const PropertyForm: React.FC = () => {
                                 value={formData.title}
                                 onChange={e => setFormData({ ...formData, title: e.target.value })}
                                 placeholder="Ej: Residencia Minimalista en Potrero"
-                                className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                             />
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -200,7 +200,7 @@ const PropertyForm: React.FC = () => {
                                 <select
                                     value={formData.operation}
                                     onChange={e => setFormData({ ...formData, operation: e.target.value as any })}
-                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 >
                                     <option value="VENTA">Venta</option>
                                     <option value="ALQUILER">Alquiler</option>
@@ -212,7 +212,7 @@ const PropertyForm: React.FC = () => {
                                 <select
                                     value={formData.type}
                                     onChange={e => setFormData({ ...formData, type: e.target.value as PropertyType })}
-                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 >
                                     <option value="CASA">Casa</option>
                                     <option value="DEPARTAMENTO">Departamento</option>
@@ -223,17 +223,17 @@ const PropertyForm: React.FC = () => {
                             </div>
                         </div>
                         {user?.role == "ADMIN" && (
-                        <div className="space-y-1.5">
-                            <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Valor de Comercialización</label>
-                            <input
-                                type="text"
-                                required
-                                value={formData.price}
-                                onChange={e => setFormData({ ...formData, price: parseInt(e.target.value) || 0 })}
-                                placeholder="Ej: 120000"
-                                className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
-                            />
-                        </div>
+                            <div className="space-y-1.5">
+                                <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Valor de Comercialización</label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={formData.price}
+                                    onChange={e => setFormData({ ...formData, price: parseInt(e.target.value) || 0 })}
+                                    placeholder="Ej: 120000"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                />
+                            </div>
                         )}
                     </div>
                 </section>
@@ -244,7 +244,7 @@ const PropertyForm: React.FC = () => {
                         <h3 className="text-[10px] font-semibold text-neutral-400 uppercase tracking-[0.3em]">02 / UBICACIÓN GEOGRÁFICA</h3>
                     </div>
 
-                    <div className="space-y-5 bg-white border border-neutral-200/60 p-6 rounded-sm shadow-2xs">
+                    <div className="space-y-5 bg-surface border border-neutral-200/60 p-6 rounded-sm shadow-2xs">
                         <div className="space-y-1.5">
                             <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Dirección y Altura</label>
                             <input
@@ -253,7 +253,7 @@ const PropertyForm: React.FC = () => {
                                 value={formData.address}
                                 onChange={e => setFormData({ ...formData, address: e.target.value })}
                                 placeholder="Ej: Av. Illia 450"
-                                className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                             />
                         </div>
 
@@ -266,7 +266,7 @@ const PropertyForm: React.FC = () => {
                                     value={formData.city}
                                     onChange={e => setFormData({ ...formData, city: e.target.value })}
                                     placeholder="Ej: Juana Koslay"
-                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 />
                             </div>
                             <div className="space-y-1.5">
@@ -277,7 +277,7 @@ const PropertyForm: React.FC = () => {
                                     value={formData.province}
                                     onChange={e => setFormData({ ...formData, province: e.target.value })}
                                     placeholder="Ej: San Luis"
-                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 />
                             </div>
                             <div className="space-y-1.5">
@@ -288,7 +288,7 @@ const PropertyForm: React.FC = () => {
                                     value={formData.zipCode}
                                     onChange={e => setFormData({ ...formData, zipCode: e.target.value })}
                                     placeholder="Ej: 5700"
-                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 />
                             </div>
                         </div>
@@ -301,23 +301,23 @@ const PropertyForm: React.FC = () => {
                         <h3 className="text-[10px] font-semibold text-neutral-400 uppercase tracking-[0.3em]">03 / ARCHIVOS MULTIMEDIA</h3>
                     </div>
 
-                    <div className="bg-white border border-neutral-200/60 p-6 rounded-sm shadow-2xs space-y-4">
+                    <div className="bg-surface border border-neutral-200/60 p-6 rounded-sm shadow-2xs space-y-4">
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                             {(formData.images ?? []).map((img, idx) => (
                                 <div key={idx} className="relative aspect-square border border-neutral-200 overflow-hidden group rounded-xs">
                                     <img src={getImageUrl(img.url)} className="size-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" alt="Preview" />
-                                    <div className="absolute inset-0 bg-neutral-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                                    <div className="absolute inset-0 btn-primary-theme/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                                         <button
                                             type="button"
                                             onClick={() => setEditingImageIndex(idx)}
-                                            className="size-7 bg-white text-neutral-950 flex items-center justify-center shadow-md active:scale-90 transition-transform"
+                                            className="size-7 bg-surface text-neutral-950 flex items-center justify-center shadow-md active:scale-90 transition-transform"
                                         >
                                             <span className="material-symbols-outlined text-xs">crop</span>
                                         </button>
                                         <button
                                             type="button"
                                             onClick={() => removeImage(idx)}
-                                            className="size-7 bg-neutral-900 text-white flex items-center justify-center shadow-md active:scale-90 transition-transform"
+                                            className="size-7 btn-primary-theme text-white flex items-center justify-center shadow-md active:scale-90 transition-transform"
                                         >
                                             <span className="material-symbols-outlined text-xs">delete</span>
                                         </button>
@@ -349,7 +349,7 @@ const PropertyForm: React.FC = () => {
                         <h3 className="text-[10px] font-semibold text-neutral-400 uppercase tracking-[0.3em]">04 / ESPECIFICACIONES TÉCNICAS</h3>
                     </div>
 
-                    <div className="space-y-5 bg-white border border-neutral-200/60 p-6 rounded-sm shadow-2xs">
+                    <div className="space-y-5 bg-surface border border-neutral-200/60 p-6 rounded-sm shadow-2xs">
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                             <div className="space-y-1.5">
                                 <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Dormitorios</label>
@@ -357,7 +357,7 @@ const PropertyForm: React.FC = () => {
                                     type="number"
                                     value={formData.bedrooms}
                                     onChange={e => setFormData({ ...formData, bedrooms: parseInt(e.target.value) })}
-                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 />
                             </div>
                             <div className="space-y-1.5">
@@ -366,7 +366,7 @@ const PropertyForm: React.FC = () => {
                                     type="number"
                                     value={formData.bathrooms}
                                     onChange={e => setFormData({ ...formData, bathrooms: parseInt(e.target.value) })}
-                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 />
                             </div>
                             <div className="space-y-1.5">
@@ -375,7 +375,7 @@ const PropertyForm: React.FC = () => {
                                     type="number"
                                     value={formData.garages}
                                     onChange={e => setFormData({ ...formData, garages: parseInt(e.target.value) })}
-                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 />
                             </div>
                         </div>
@@ -385,20 +385,20 @@ const PropertyForm: React.FC = () => {
                                 <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Sup. Cubierta (m²)</label>
                                 <input
                                     type="number"
-                                    value={formData.coveredSurface}
-                                    onChange={e => setFormData({ ...formData, coveredSurface: parseInt(e.target.value) || 0 })}
+                                    value={formData.coveredsurface}
+                                    onChange={e => setFormData({ ...formData, coveredsurface: parseInt(e.target.value) || 0 })}
                                     placeholder="Ej: 140"
-                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 />
                             </div>
                             <div className="space-y-1.5">
                                 <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Sup. Total (m²)</label>
                                 <input
                                     type="number"
-                                    value={formData.totalSurface}
-                                    onChange={e => setFormData({ ...formData, totalSurface: parseInt(e.target.value) || 0 })}
+                                    value={formData.totalsurface}
+                                    onChange={e => setFormData({ ...formData, totalsurface: parseInt(e.target.value) || 0 })}
                                     placeholder="Ej: 300"
-                                    className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 />
                             </div>
                         </div>
@@ -410,7 +410,7 @@ const PropertyForm: React.FC = () => {
                                 value={formData.description}
                                 onChange={e => setFormData({ ...formData, description: e.target.value })}
                                 placeholder="Detalles de diseño arquitectónico, materialidad y entorno..."
-                                className="w-full bg-[#fafafa] border border-neutral-200 rounded-sm p-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors resize-none leading-relaxed"
+                                className="w-full bg-surface border border-neutral-200 rounded-sm p-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors resize-none leading-relaxed"
                             />
                         </div>
                     </div>
@@ -421,33 +421,34 @@ const PropertyForm: React.FC = () => {
                     <div className="border-b border-neutral-200 pb-2">
                         <h3 className="text-[10px] font-semibold text-neutral-400 uppercase tracking-[0.3em]">05 / AJUSTE DE PROPIEDAD</h3>
                     </div>
+                    <div className="space-y-5 bg-surface border border-neutral-200/60 p-6 rounded-sm shadow-2xs">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="space-y-1.5">
+                                <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Estado de Inmueble</label>
+                                <select
+                                    value={formData.status}
+                                    onChange={e => setFormData({ ...formData, status: e.target.value as PropertyStatus })}
+                                    className="w-full h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                >
+                                    <option value="RENTED">Alquilada</option>
+                                    <option value="SOLD">Vendida</option>
+                                    <option value="RESERVED">Reservada</option>
+                                    <option value="AVAILABLE">Disponible</option>
+                                </select>
+                            </div>
+                            <div className="space-y-1.5">
+                                <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Propiedad destacada</label>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="space-y-1.5">
-                            <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Estado de Inmueble</label>
-                            <select
-                                value={formData.status}
-                                onChange={e => setFormData({ ...formData, status: e.target.value as PropertyStatus })}
-                                className="w-full h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
-                            >
-                                <option value="RENTED">Alquilada</option>
-                                <option value="SOLD">Vendida</option>
-                                <option value="RESERVED">Reservada</option>
-                                <option value="AVAILABLE">Disponible</option>
-                            </select>
-                        </div>
-                        <div className="space-y-1.5">
-                            <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Propiedad destacada</label>
+                                <div className="flex flex-wrap gap-2 pt-2">
+                                    <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Destacar propiedad?</label>
 
-                            <div className="flex flex-wrap gap-2 pt-2">
-                                <label className="text-[9px] font-medium uppercase text-neutral-500 tracking-widest">Destacar propiedad?</label>
-
-                                <input
-                                    type="checkbox"
-                                    checked={formData.featured}
-                                    onChange={e => setFormData({ ...formData, featured: !formData.featured })}
-                                    className="text-neutral-400 hover:text-neutral-950 flex items-center"
-                                />
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.featured}
+                                        onChange={e => setFormData({ ...formData, featured: !formData.featured })}
+                                        className="text-neutral-400 hover:text-neutral-950 flex items-center"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -459,13 +460,13 @@ const PropertyForm: React.FC = () => {
                         <h3 className="text-[10px] font-semibold text-neutral-400 uppercase tracking-[0.3em]">06 / AMENIDADES Y ATRIBUTOS</h3>
                     </div>
 
-                    <div className="space-y-5 bg-white border border-neutral-200/60 p-6 rounded-sm shadow-2xs">
+                    <div className="space-y-5 bg-surface border border-neutral-200/60 p-6 rounded-sm shadow-2xs">
                         <div className="flex gap-2">
                             <input
                                 type="text"
                                 id="feature-input"
                                 placeholder="Ej: Piscina infinita, Calefacción central, Cochera doble"
-                                className="flex-1 h-11 bg-[#fafafa] border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
+                                className="flex-1 h-11 bg-surface border border-neutral-200 rounded-sm px-4 text-xs font-medium focus:outline-none focus:border-neutral-900 transition-colors"
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') {
                                         e.preventDefault();
@@ -487,7 +488,7 @@ const PropertyForm: React.FC = () => {
                                         input.value = '';
                                     }
                                 }}
-                                className="h-11 px-5 bg-neutral-950 text-white text-xs font-medium uppercase tracking-widest hover:bg-neutral-800 transition-colors rounded-sm"
+                                className="h-11 px-5 btn-primary-theme text-white text-xs font-medium uppercase tracking-widest hover:bg-neutral-800 transition-colors rounded-sm"
                             >
                                 Añadir
                             </button>
@@ -495,7 +496,7 @@ const PropertyForm: React.FC = () => {
 
                         <div className="flex flex-wrap gap-2 pt-2">
                             {formData.features?.map((feature, idx) => (
-                                <span key={idx} className="bg-[#fafafa] border border-neutral-200 px-3 py-1.5 rounded-none text-[9px] font-medium uppercase tracking-wider text-neutral-600 flex items-center gap-2">
+                                <span key={idx} className="bg-surface border border-neutral-200 px-3 py-1.5 rounded-none text-[9px] font-medium uppercase tracking-wider text-neutral-600 flex items-center gap-2">
                                     {feature}
                                     <button
                                         type="button"
@@ -525,7 +526,7 @@ const PropertyForm: React.FC = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="h-12 bg-neutral-950 text-white text-[10px] font-medium uppercase tracking-widest hover:bg-neutral-800 transition-colors w-full sm:flex-[2] rounded-sm shadow-sm"
+                        className="h-12 btn-primary-theme text-white text-[10px] font-medium uppercase tracking-widest hover:bg-neutral-800 transition-colors w-full sm:flex-[2] rounded-sm shadow-sm"
                     >
                         {loading ? "PROCESANDO..." : "PUBLICAR ACTIVO"}
                     </button>

@@ -80,13 +80,13 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ darkMode, onToggleDar
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#fafafa] dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 tracking-wider font-sans antialiased transition-colors duration-300">
+    <div className="flex flex-col min-h-screen bg-surface-secondary dark:btn-primary-theme text-app dark:text-neutral-100 tracking-wider font-sans antialiased transition-colors duration-300">
 
       <TopAppBar showBack = {true} />
       <div className="flex flex-col gap-14 p-8 md:p-12 pb-24 max-w-xl mx-auto w-full">
         <SectionHeader title = {appConfig.companyShortName} subtitle="CONFIGURACION"/>
-        <div className="flex items-center gap-6 bg-white dark:bg-neutral-900 p-8 rounded-none border border-neutral-200/40 dark:border-neutral-900/50 shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
-          <div className="size-16 rounded-none bg-neutral-950 dark:bg-neutral-850 flex items-center justify-center text-white shrink-0 border border-neutral-800/10 dark:border-white/5">
+        <div className="flex items-center gap-6 bg-surface dark:btn-primary-theme p-8 rounded-none border border-neutral-200/40 dark:border-neutral-900/50 shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
+          <div className="size-16 rounded-none btn-primary-theme dark:bg-neutral-850 flex items-center justify-center text-white shrink-0 border border-neutral-800/10 dark:border-white/5">
             {isAuthenticated ? (
               <span className="text-xs font-light tracking-[0.2em]">{getInitials()}</span>
             ) : (
@@ -95,14 +95,14 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ darkMode, onToggleDar
           </div>
 
           <div className="flex-1 min-w-0">
-            <h3 className="text-neutral-900 dark:text-white text-xs font-medium tracking-[0.2em] uppercase truncate">{fullName}</h3>
+            <h3 className="text-app dark:text-white text-xs font-medium tracking-[0.2em] uppercase truncate">{fullName}</h3>
             <p className="text-neutral-400 dark:text-neutral-500 text-[10px] font-light tracking-wide truncate mt-1.5 uppercase">{userEmail}</p>
           </div>
 
           {!isAuthenticated && (
             <button
               onClick={() => navigate('/login')}
-              className="bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 text-[9px] font-medium py-3 px-6 tracking-[0.2em] uppercase hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all duration-300 rounded-none border border-transparent"
+              className="btn-primary-theme dark:bg-surface text-white dark:text-neutral-950 text-[9px] font-medium py-3 px-6 tracking-[0.2em] uppercase hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all duration-300 rounded-none border border-transparent"
             >
               Entrar
             </button>
@@ -120,31 +120,31 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ darkMode, onToggleDar
                   {item.isToggle ? (
                     <button
                       onClick={onToggleDarkMode}
-                      className="w-full flex items-center justify-between p-4 px-5 bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 rounded-sm hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-all duration-200 group"
+                      className="w-full flex items-center justify-between p-4 px-5 bg-surface dark:btn-primary-theme border border-neutral-200/60 dark:border-neutral-800/60 rounded-sm hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-all duration-200 group"
                     >
                       <div className="flex items-center gap-4">
                         <div className="flex-1 min-w-0">
-                          <p className="font-medium text-[11px] text-neutral-900 dark:text-neutral-200 tracking-widest uppercase group-hover:text-neutral-500 transition-colors duration-200">{item.label}</p>
+                          <p className="font-medium text-[11px] text-app dark:text-neutral-200 tracking-widest uppercase group-hover:text-neutral-500 transition-colors duration-200">{item.label}</p>
                           <p className="text-neutral-400 dark:text-neutral-500 text-[10px] font-light tracking-wide mt-1 uppercase">{item.description}</p>
                         </div>
                       </div>
-                      <span className={`${darkMode ? 'translate-x-4 bg-white' : 'translate-x-0.5 bg-neutral-400'} inline-block size-4 transform rounded-none transition-transform duration-300`} />
+                      <span className={`${darkMode ? 'translate-x-4 bg-surface' : 'translate-x-0.5 bg-neutral-400'} inline-block size-4 transform rounded-none transition-transform duration-300`} />
                     </button>
                   ) : (
                     <button
                       onClick={() => item.path && navigate(item.path)}
-                      className="w-full flex items-center justify-between p-4 px-5 bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 rounded-sm hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-all duration-200 group"
+                      className="w-full flex items-center justify-between p-4 px-5 bg-surface dark:btn-primary-theme border border-neutral-200/60 dark:border-neutral-800/60 rounded-sm hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-all duration-200 group"
                     >
                       <div className="flex items-center gap-4">
-                        <div className="text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white flex items-center justify-center transition-colors duration-200 shrink-0">
+                        <div className="text-neutral-400 group-hover:text-app dark:group-hover:text-white flex items-center justify-center transition-colors duration-200 shrink-0">
                           <span className="material-symbols-outlined font-light text-xl">{item.icon}</span>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="font-medium text-[11px] text-neutral-900 dark:text-neutral-200 tracking-widest uppercase group-hover:text-neutral-500 transition-colors duration-200">{item.label}</p>
+                          <p className="font-medium text-[11px] text-app dark:text-neutral-200 tracking-widest uppercase group-hover:text-neutral-500 transition-colors duration-200">{item.label}</p>
                           <p className="text-neutral-400 dark:text-neutral-500 text-[10px] font-light tracking-wide mt-1 uppercase">{item.description}</p>
                         </div>
                       </div>
-                      <span className="material-symbols-outlined text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white group-hover:translate-x-0.5 transition-all duration-200 text-lg font-light">chevron_right</span>
+                      <span className="material-symbols-outlined text-neutral-300 group-hover:text-app dark:group-hover:text-white group-hover:translate-x-0.5 transition-all duration-200 text-lg font-light">chevron_right</span>
                     </button>
                   )}
                 </div>
@@ -155,13 +155,13 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ darkMode, onToggleDar
         {isAuthenticated && (
           <button
             onClick={handleLogout}
-            className="mt-4 tracking-[0.25em] uppercase text-neutral-400 hover:text-neutral-900 dark:hover:text-white text-[9px] font-medium py-4 px-8 transition-colors duration-300 text-center rounded-none border border-neutral-200 dark:border-neutral-900 bg-transparent"
+            className="mt-4 tracking-[0.25em] uppercase text-neutral-400 hover:text-app dark:hover:text-white text-[9px] font-medium py-4 px-8 transition-colors duration-300 text-center rounded-none border border-neutral-200 dark:border-neutral-900 bg-transparent"
           >
             Cerrar Sesión del Sistema
           </button>
         )}
         <div className="flex flex-col items-center mt-8 gap-4">
-          <div className="w-8 h-[1px] bg-neutral-200 dark:bg-neutral-900" />
+          <div className="w-8 h-[1px] bg-neutral-200 dark:btn-primary-theme" />
           <p className="text-center text-[8px] text-neutral-400 uppercase tracking-[0.3em] font-light">
             © 2026 {appConfig.companyName}.
           </p>

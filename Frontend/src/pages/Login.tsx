@@ -43,17 +43,17 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-[#fafafa] text-neutral-900 tracking-wider font-sans antialiased">
+        <div className="flex flex-col min-h-screen bg-surface-secondary text-app tracking-wider font-sans antialiased">
 
             <TopAppBar showBack />
 
             <div className="px-6 flex flex-col items-center justify-center flex-1 max-w-md mx-auto w-full animate-fade-in pb-24">
-                <div className="w-full bg-white border border-neutral-200/80 p-8 sm:p-10 rounded-xl shadow-xs">
+                <div className="w-full bg-surface border border-neutral-200/80 p-8 sm:p-10 rounded-xl shadow-xs">
                     <div className="text-center mb-8">
-                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-950 text-white mb-4 shadow-sm">
+                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl btn-primary-theme text-white mb-4 shadow-sm">
                             <span className="material-symbols-outlined text-xl font-light">lock_open</span>
                         </div>
-                        <h2 className="text-xl font-bold tracking-tight text-neutral-900 mb-1">
+                        <h2 className="text-xl font-bold tracking-tight text-app mb-1">
                             Ingreso al Sistema
                         </h2>
                         <p className="text-neutral-400 text-xs font-medium tracking-wide">
@@ -77,7 +77,7 @@ const Login: React.FC = () => {
                                     onChange={handleChange}
                                     required
                                     placeholder="correo@mail.com"
-                                    className="w-full h-12 bg-[#fafafa] border border-neutral-200 rounded-xl pl-12 pr-4 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 transition-all duration-200"
+                                    className="w-full h-12 bg-surface border border-neutral-200 rounded-xl pl-12 pr-4 text-sm text-app placeholder:text-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 transition-all duration-200"
                                 />
                             </div>
                         </div>
@@ -96,7 +96,7 @@ const Login: React.FC = () => {
                                     onChange={handleChange}
                                     required
                                     placeholder="••••••••"
-                                    className="w-full h-12 bg-[#fafafa] border border-neutral-200 rounded-xl pl-12 pr-4 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 transition-all duration-200"
+                                    className="w-full h-12 bg-surface border border-neutral-200 rounded-xl pl-12 pr-4 text-sm text-app placeholder:text-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 transition-all duration-200"
                                 />
                             </div>
                         </div>
@@ -108,7 +108,7 @@ const Login: React.FC = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full h-12 bg-neutral-950 text-white text-[10px] font-medium uppercase tracking-[0.2em] rounded-xl shadow-sm hover:bg-neutral-800 transition-all duration-200 active:scale-[0.98] flex items-center justify-center pt-[2px]"
+                            className="w-full h-12 btn-primary-theme text-white text-[10px] font-medium uppercase tracking-[0.2em] rounded-xl shadow-sm hover:bg-neutral-800 transition-all duration-200 active:scale-[0.98] flex items-center justify-center pt-[2px]"
                         >
                             {loading ? (
                                 <div className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>

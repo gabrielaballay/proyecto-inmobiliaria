@@ -20,16 +20,16 @@ const HelpFAQ: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#fafafa] dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 tracking-wider font-sans antialiased transition-colors duration-300">
+    <div className="flex flex-col min-h-screen bg-surface-secondary dark:btn-primary-theme text-app dark:text-neutral-100 tracking-wider font-sans antialiased transition-colors duration-300">
       <TopAppBar showBack/>
 
       <div className="flex flex-col p-6 md:p-8 pb-20 max-w-2xl mx-auto w-full">
         <SectionHeader title = {appConfig.companyShortName} subtitle="SOPORTE - AYUDA"/>
-        <div className="flex flex-col items-center p-8 bg-white dark:bg-neutral-900 rounded-none border border-neutral-200/60 dark:border-neutral-800/60 shadow-[0_1px_3px_rgba(0,0,0,0.02)] mb-12">
-          <div className="size-12 bg-neutral-950 dark:bg-neutral-800 flex items-center justify-center text-white mb-4">
+        <div className="flex flex-col items-center p-8 bg-surface dark:btn-primary-theme rounded-none border border-neutral-200/60 dark:border-neutral-800/60 shadow-[0_1px_3px_rgba(0,0,0,0.02)] mb-12">
+          <div className="size-12 btn-primary-theme dark:bg-neutral-800 flex items-center justify-center text-white mb-4">
             <span className="material-symbols-outlined font-light text-xl">support_agent</span>
           </div>
-          <h3 className="text-xs font-semibold text-neutral-900 dark:text-white tracking-[0.25em] uppercase text-center">
+          <h3 className="text-xs font-semibold text-app dark:text-white tracking-[0.25em] uppercase text-center">
             ¿Necesitas soporte?
           </h3>
           <p className="text-neutral-400 dark:text-neutral-500 text-[9px] font-light uppercase tracking-[0.2em] mt-2 mb-6 text-center">
@@ -38,20 +38,20 @@ const HelpFAQ: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-3 w-full max-w-sm">
             <button 
               onClick={handleWhatsApp} 
-              className="flex-1 tracking-widest uppercase bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 text-[10px] font-medium py-3 px-4 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all text-center rounded-none"
+              className="flex-1 tracking-widest uppercase btn-primary-theme text-white dark:bg-surface dark:text-neutral-950 text-[10px] font-medium py-3 px-4 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all text-center rounded-none"
             >
               WhatsApp
             </button>
             <button 
               onClick={() => window.open(appConfig.email)} 
-              className="flex-1 tracking-widest uppercase border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-200 bg-transparent text-[10px] font-medium py-3 px-4 hover:bg-neutral-50 dark:hover:bg-neutral-800/40 transition-all text-center rounded-none"
+              className="flex-1 tracking-widest uppercase border border-neutral-200 dark:border-neutral-800 text-app dark:text-neutral-200 bg-transparent text-[10px] font-medium py-3 px-4 hover:bg-neutral-50 dark:hover:bg-neutral-800/40 transition-all text-center rounded-none"
             >
               Email Directo
             </button>
           </div>
         </div>
         <section className="space-y-6">
-          <h3 className="text-xs font-semibold text-neutral-900 dark:text-white tracking-[0.3em] uppercase px-1">
+          <h3 className="text-xs font-semibold text-app dark:text-white tracking-[0.3em] uppercase px-1">
             Preguntas Frecuentes
           </h3>
           <div className="border-t border-neutral-200 dark:border-neutral-800">
@@ -66,10 +66,10 @@ const HelpFAQ: React.FC = () => {
                     onClick={() => setOpenIdx(isOpen ? null : idx)}
                     className="w-full flex items-center justify-between py-5 text-left group"
                   >
-                    <span className="text-xs font-medium text-neutral-900 dark:text-neutral-200 tracking-wider group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors pr-4">
+                    <span className="text-xs font-medium text-app dark:text-neutral-200 tracking-wider group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors pr-4">
                       {faq.q}
                     </span>
-                    <span className={`material-symbols-outlined font-light text-xl text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                    <span className={`material-symbols-outlined font-light text-xl text-neutral-400 group-hover:text-app dark:group-hover:text-white transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
                       expand_more
                     </span>
                   </button>

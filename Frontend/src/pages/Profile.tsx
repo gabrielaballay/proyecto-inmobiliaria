@@ -33,12 +33,12 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#fafafa] dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 tracking-wider font-sans antialiased transition-colors duration-300">
+    <div className="flex flex-col min-h-screen bg-surface-secondary dark:btn-primary-theme text-app dark:text-neutral-100 tracking-wider font-sans antialiased transition-colors duration-300">
       
       <TopAppBar showBack />
       <div className="flex flex-col p-6 md:p-8 pb-20 max-w-xl mx-auto w-full">        
         <SectionHeader title='MI CUENTA' subtitle='PERFIL'/>
-        <div className="flex flex-col items-center p-8 bg-white dark:bg-neutral-900 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60 shadow-[0_1px_3px_rgba(0,0,0,0.02)] relative overflow-hidden">
+        <div className="flex flex-col items-center p-8 bg-surface dark:btn-primary-theme rounded-sm border border-neutral-200/60 dark:border-neutral-800/60 shadow-[0_1px_3px_rgba(0,0,0,0.02)] relative overflow-hidden">
           
           <div className="size-20 rounded-none bg-neutral-955 dark:bg-neutral-800 flex items-center justify-center text-white shrink-0 mb-4">
             <span className="text-lg font-medium tracking-widest">
@@ -46,7 +46,7 @@ const Profile: React.FC = () => {
             </span>
           </div>
 
-          <h2 className="text-sm font-semibold text-neutral-900 dark:text-white tracking-widest uppercase text-center">{fullName}</h2>
+          <h2 className="text-sm font-semibold text-app dark:text-white tracking-widest uppercase text-center">{fullName}</h2>
           <p className="text-neutral-400 dark:text-neutral-500 text-xs font-light tracking-wide mt-1 text-center">{user?.email}</p>
           
           {roleLabel && (
@@ -60,36 +60,36 @@ const Profile: React.FC = () => {
 
           <button 
             onClick={() => navigate('/profile/edit')}
-            className="w-full flex items-center justify-between p-4 px-5 bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 rounded-sm hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-all duration-200 group"
+            className="w-full flex items-center justify-between p-4 px-5 bg-surface dark:btn-primary-theme border border-neutral-200/60 dark:border-neutral-800/60 rounded-sm hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-all duration-200 group"
           >
             <div className="flex items-center gap-4">
-              <div className="text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white flex items-center justify-center transition-colors duration-200 shrink-0">
+              <div className="text-neutral-400 group-hover:text-app dark:group-hover:text-white flex items-center justify-center transition-colors duration-200 shrink-0">
                 <span className="material-symbols-outlined font-light text-xl">edit</span>
               </div>
-              <span className="font-medium text-xs text-neutral-900 dark:text-neutral-200 tracking-wider uppercase group-hover:text-neutral-500 transition-colors duration-200">Editar Perfil</span>
+              <span className="font-medium text-xs text-app dark:text-neutral-200 tracking-wider uppercase group-hover:text-neutral-500 transition-colors duration-200">Editar Perfil</span>
             </div>
-            <span className="material-symbols-outlined text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white group-hover:translate-x-0.5 transition-all duration-200 text-lg font-light">chevron_right</span>
+            <span className="material-symbols-outlined text-neutral-300 group-hover:text-app dark:group-hover:text-white group-hover:translate-x-0.5 transition-all duration-200 text-lg font-light">chevron_right</span>
           </button>
           
           {user?.role === 'ADMIN' && (
             <button 
               onClick={() => navigate('/admin/users')}
-              className="w-full flex items-center justify-between p-4 px-5 bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 rounded-sm hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-all duration-200 group"
+              className="w-full flex items-center justify-between p-4 px-5 bg-surface dark:btn-primary-theme border border-neutral-200/60 dark:border-neutral-800/60 rounded-sm hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-all duration-200 group"
             >
               <div className="flex items-center gap-4">
-                <div className="text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white flex items-center justify-center transition-colors duration-200 shrink-0">
+                <div className="text-neutral-400 group-hover:text-app dark:group-hover:text-white flex items-center justify-center transition-colors duration-200 shrink-0">
                   <span className="material-symbols-outlined font-light text-xl">group</span>
                 </div>
-                <span className="font-medium text-xs text-neutral-900 dark:text-neutral-200 tracking-wider uppercase group-hover:text-neutral-500 transition-colors duration-200">Gestionar Vendedores</span>
+                <span className="font-medium text-xs text-app dark:text-neutral-200 tracking-wider uppercase group-hover:text-neutral-500 transition-colors duration-200">Gestionar Vendedores</span>
               </div>
-              <span className="material-symbols-outlined text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white group-hover:translate-x-0.5 transition-all duration-200 text-lg font-light">chevron_right</span>
+              <span className="material-symbols-outlined text-neutral-300 group-hover:text-app dark:group-hover:text-white group-hover:translate-x-0.5 transition-all duration-200 text-lg font-light">chevron_right</span>
             </button>
           )}
 
           <div className="pt-4">
             <button 
               onClick={handleLogout}
-              className="w-full tracking-widest uppercase bg-neutral-955 text-white dark:bg-neutral-900 text-[10px] font-medium py-3.5 px-8 hover:bg-neutral-800 dark:hover:bg-neutral-800 transition-all duration-300 text-center rounded-sm border border-transparent dark:border-neutral-800"
+              className="w-full tracking-widest uppercase bg-neutral-955 text-white dark:btn-primary-theme text-[10px] font-medium py-3.5 px-8 hover:bg-neutral-800 dark:hover:bg-neutral-800 transition-all duration-300 text-center rounded-sm border border-transparent dark:border-neutral-800"
             >
               Cerrar Sesión del Sistema
             </button>

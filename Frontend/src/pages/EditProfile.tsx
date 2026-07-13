@@ -87,18 +87,18 @@ const EditProfile: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#fafafa] dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 tracking-wider font-sans antialiased transition-colors duration-300">
+    <div className="flex flex-col min-h-screen bg-surface-secondary dark:btn-primary-theme text-app dark:text-neutral-100 tracking-wider font-sans antialiased transition-colors duration-300">
       
       <TopAppBar showBack/>
 
       <div className="flex flex-col p-6 md:p-8 pb-20 max-w-xl mx-auto w-full">
         <SectionHeader title = {appConfig.companyShortName} subtitle="ACTUALIZAR PERFIL"/>
-        <div className="flex items-center gap-6 bg-white dark:bg-neutral-900 p-6 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60 shadow-[0_1px_3px_rgba(0,0,0,0.02)] mb-8">
-          <div className="size-16 rounded-none bg-neutral-950 dark:bg-neutral-800 flex items-center justify-center text-white shrink-0">
+        <div className="flex items-center gap-6 bg-surface dark:btn-primary-theme p-6 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60 shadow-[0_1px_3px_rgba(0,0,0,0.02)] mb-8">
+          <div className="size-16 rounded-none btn-primary-theme dark:bg-neutral-800 flex items-center justify-center text-white shrink-0">
             <span className="text-base font-medium tracking-widest">{getInitials()}</span>
           </div>
           <div>
-            <h4 className="text-xs font-semibold tracking-[0.2em] uppercase text-neutral-900 dark:text-white">Fotografía de Cuenta</h4>
+            <h4 className="text-xs font-semibold tracking-[0.2em] uppercase text-app dark:text-white">Fotografía de Cuenta</h4>
             <p className="text-neutral-400 dark:text-neutral-500 text-xs font-light tracking-wide mt-1">Sincronizada con tu perfil corporativo.</p>
           </div>
         </div>
@@ -110,7 +110,7 @@ const EditProfile: React.FC = () => {
               <h3 className="text-[10px] font-medium tracking-[0.3em] uppercase text-neutral-400 dark:text-neutral-500 mb-4 pl-1">
                 Datos Personales
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white dark:bg-neutral-900 p-6 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-surface dark:btn-primary-theme p-6 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60">
                 
                 <div className="flex flex-col gap-2">
                   <label className="text-[10px] font-medium tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-500">
@@ -123,7 +123,7 @@ const EditProfile: React.FC = () => {
                     onChange={handleChange}
                     required
                     minLength={2}
-                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
+                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-app dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
                   />
                 </div>
 
@@ -138,7 +138,7 @@ const EditProfile: React.FC = () => {
                     onChange={handleChange}
                     required
                     minLength={2}
-                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
+                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-app dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
                   />
                 </div>
                 <div className="flex flex-col gap-2 md:col-span-2">
@@ -151,7 +151,7 @@ const EditProfile: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
+                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-app dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
                   />
                 </div>
               </div>
@@ -167,14 +167,14 @@ const EditProfile: React.FC = () => {
               <button 
                 type="button" 
                 onClick={() => navigate('/profile')}
-                className="flex-1 tracking-widest uppercase bg-transparent text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 text-[10px] font-medium py-4 px-4 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-all duration-300 text-center rounded-sm"
+                className="flex-1 tracking-widest uppercase bg-transparent text-app dark:text-white border border-neutral-200 dark:border-neutral-800 text-[10px] font-medium py-4 px-4 hover:bg-neutral-50 dark:hover:btn-primary-theme transition-all duration-300 text-center rounded-sm"
               >
                 Cancelar
               </button>
               <button 
                 type="submit"
                 disabled={loading}
-                className="flex-[2] tracking-widest uppercase bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 text-[10px] font-medium py-4 px-4 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-300 text-center rounded-sm disabled:opacity-50"
+                className="flex-[2] tracking-widest uppercase btn-primary-theme dark:bg-surface text-white dark:text-neutral-950 text-[10px] font-medium py-4 px-4 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-300 text-center rounded-sm disabled:opacity-50"
               >
                 {loading ? 'Guardando...' : 'Guardar Cambios'}
               </button>
@@ -186,7 +186,7 @@ const EditProfile: React.FC = () => {
               <h3 className="text-[10px] font-medium tracking-[0.3em] uppercase text-neutral-400 dark:text-neutral-500 mb-4 pl-1">
                 Seguridad
               </h3>
-              <div className="flex flex-col gap-6 bg-white dark:bg-neutral-900 p-6 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60">
+              <div className="flex flex-col gap-6 bg-surface dark:btn-primary-theme p-6 rounded-sm border border-neutral-200/60 dark:border-neutral-800/60">
                 
                 <div className="flex flex-col gap-2">
                   <label className="text-[10px] font-medium tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-500">
@@ -198,7 +198,7 @@ const EditProfile: React.FC = () => {
                     value={passwordData.currentPassword}
                     onChange={handlePasswordChange}
                     required
-                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
+                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-app dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors"
                   />
                 </div>
 
@@ -214,7 +214,7 @@ const EditProfile: React.FC = () => {
                     onChange={handlePasswordChange}
                     required
                     minLength={8}
-                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors placeholder:text-neutral-300 dark:placeholder:text-neutral-700"
+                    className="w-full bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-sm p-3.5 text-xs tracking-wider text-app dark:text-neutral-100 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors placeholder:text-neutral-300 dark:placeholder:text-neutral-700"
                   />
                 </div>
               </div>
@@ -229,7 +229,7 @@ const EditProfile: React.FC = () => {
             <button 
               type="submit"
               disabled={passwordLoading}
-              className="mt-2 tracking-widest uppercase bg-transparent text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 text-[10px] font-medium py-4 px-8 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-all duration-300 text-center rounded-sm disabled:opacity-50"
+              className="mt-2 tracking-widest uppercase bg-transparent text-app dark:text-white border border-neutral-200 dark:border-neutral-800 text-[10px] font-medium py-4 px-8 hover:bg-neutral-50 dark:hover:btn-primary-theme transition-all duration-300 text-center rounded-sm disabled:opacity-50"
             >
               {passwordLoading ? 'Actualizando...' : 'Actualizar Contraseña'}
             </button>

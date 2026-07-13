@@ -23,12 +23,12 @@ const LanguageSettings: React.FC = () => {
             <p className="text-sm text-gray-500 font-medium">Selecciona el idioma para la interfaz y los reportes.</p>
         </header>
 
-        <div className="bg-white dark:bg-navy rounded-[2.5rem] border border-gray-100 dark:border-gray-800 overflow-hidden shadow-sm">
+        <div className="bg-surface dark:bg-navy rounded-[2.5rem] border border-gray-100 dark:border-gray-800 overflow-hidden shadow-sm">
           {langs.map((lang, idx) => (
             <button 
               key={lang.code}
               onClick={() => handleSelect(lang.code)}
-              className={`w-full flex items-center gap-5 p-6 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors ${idx !== langs.length - 1 ? 'border-b border-gray-50 dark:border-gray-800' : ''}`}
+              className={`w-full flex items-center gap-5 p-6 hover:bg-gray-50 dark:hover:bg-surface/5 transition-colors ${idx !== langs.length - 1 ? 'border-b border-gray-50 dark:border-gray-800' : ''}`}
             >
               <span className="text-4xl shadow-sm rounded-full">{lang.flag}</span>
               <div className="flex-1 text-left">

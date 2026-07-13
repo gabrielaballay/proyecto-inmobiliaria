@@ -1,0 +1,126 @@
+/* ===========================================================
+   VARIABLES
+=========================================================== */
+
+:root {
+
+    --background: #fafafa;
+    --surface: #fafafa;
+    --surface-sucondary: #ffffff;
+
+    --primary: #fafafa;
+    --primary-hover: #303030;
+
+    --surface: #737373;
+
+    --text: #171717;
+    --text-surface: #737373;
+
+    --border: #e5e5e5;
+
+    --success: #16a34a;
+    --warning: #f59e0b;
+    --danger: #dc2626;
+
+}
+
+
+/* ===========================================================
+   FONDOS
+=========================================================== */
+
+.bg-app {
+    background-color: var(--background);
+}
+
+.bg-surface {
+    background-color: var(--surface);
+}
+
+.bg-surface {
+    background-color: var(--surface-sucondary);
+}
+
+.bg-primary-theme {
+    background-color: var(--primary);
+}
+
+
+/* ===========================================================
+   TEXTOS
+=========================================================== */
+
+.text-app {
+    color: var(--text);
+}
+
+.text-surface-theme {
+    color: var(--text-surface);
+}
+
+.text-primary-theme {
+    color: var(--primary);
+}
+
+
+/* ===========================================================
+   BORDES
+=========================================================== */
+
+.border-app {
+    border-color: var(--border);
+}
+
+
+/* ===========================================================
+   BOTÓN PRINCIPAL
+=========================================================== */
+
+.btn-primary-theme {
+
+    background-color: var(--primary);
+
+    color: white;
+
+    transition: .25s;
+}
+
+.btn-primary-theme:hover {
+
+    background-color: var(--primary-hover);
+
+}
+
+
+/* ===========================================================
+   INPUTS
+=========================================================== */
+
+.input-theme {
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    color: var(--text);
+
+}
+
+.input-theme::placeholder{
+
+    color: var(--text-surface);
+
+}
+
+
+/* ===========================================================
+   CARDS
+=========================================================== */
+
+.card-theme {
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+}
